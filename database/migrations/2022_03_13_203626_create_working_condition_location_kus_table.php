@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocationShichosonsTable extends Migration
+class CreateWorkingConditionLocationKusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLocationShichosonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('location_shichosons', function (Blueprint $table) {
+        Schema::create('working_condition_location_kus', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateLocationShichosonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('location_shichosons');
+        Schema::dropIfExists('working_condition_location_kus');
     }
 }

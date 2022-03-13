@@ -14,14 +14,14 @@ class TestController extends Controller
      * 1)総務省の全国地方公共団体コード一覧サイトを開く
      * 2)"都道府県コード及び市町村コード"のExcelファイルをダウンロード
      * 3)ダウンロードしたファイルをCSV形式で保存。
-     * 4)保存先:storage\app\public\data\csv
+     * 4)保存先:storage/app/public/data/csv/location
      * 5)ファイル名:shikuchoson.csv
      *
     */
     public function update_location_data()
     {
 
-        $puth = 'data/csv/shikuchoson.csv';
+        $puth = 'data/csv/location/shikuchoson.csv';
 
         if( Storage::exists($puth) ){
 
