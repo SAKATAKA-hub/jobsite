@@ -13,6 +13,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+
+
+            /**
+             * -----------------------------
+             *  勤務条件テーブルのデータ
+             * -----------------------------
+            */
+            # 勤務地
+            WorkingConditionLocationTablesSeeder::class,
+
+            # 職種
+
+
+            # 業種
+
+
+            # 駅(路線)
+
+
+            # その他
+
+
+
+        ]);
     }
 }
