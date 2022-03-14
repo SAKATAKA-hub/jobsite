@@ -93,6 +93,7 @@ class TmplFileController extends Controller
         # CSVデータを連想配列に変換
         $content = str_replace("\n",'',$content);
         $array1 = explode("\r",$content);
+        array_pop($array1);
 
         $array2 = [];
         foreach ($array1 as $line) {

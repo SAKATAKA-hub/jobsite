@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * 勤務条件/ 勤務地/ 地方テーブル　Model
  ***************************************************
 */
-class WorkingConditionLocationRedion extends Model
+class WorkingConditionLocation01Redion extends Model
 {
     /*
     |--------------------------------------------------------------------------

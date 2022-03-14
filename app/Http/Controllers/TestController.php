@@ -20,17 +20,66 @@ class TestController extends Controller
     */
     public function update_location_data()
     {
+        # 勤務地のCSVデータパス
+        $puth_todohuken = 'data/csv/location/todohuken.csv';
+        $puth_shikuchoson = 'data/csv/location/shikuchoson.csv';
 
-        $puth = 'data/csv/location/shikuchoson.csv';
 
-        if( Storage::exists($puth) ){
-
-            $array = self::f_get_csv($puth);
-            dd( $array[0] );
-        }else{
+        # ファイルが存在しないときの処理
+        if(
+            !( Storage::exists($puth_todohuken) && Storage::exists($puth_shikuchoson) )
+        ){
             return 'CSVファイルは存在しません。';
         }
-}
+
+
+        # 勤務地データの挿入
+        // CSVファイルの読み込み
+        $todohuken_data = self::f_get_csv($puth_todohuken);
+        $shikuchoson_data = self::f_get_csv($puth_shikuchoson);
+
+
+        # 勤務地データのリセット
+        $redions = \App\Models\WorkingConditionLocation01Redion::all();
+        foreach ($redions as $redion) {
+            $redion->delete();
+        }
+
+
+        # データの挿入
+        $redion_name = '';
+        foreach ($todohuken_data as $data)
+        {
+            //1. 地方データの挿入
+            if ( $data['redion_name'] !== $redion_name )
+            {
+                $redion_name = $data['redion_name'];
+
+                $redion = new \App\Models\WorkingConditionLocation01Redion([
+                    'name' => $data['redion_name'],
+                ]);
+                $redion->save();
+            }
+
+            //2. 都道府県データの挿入
+            $todohuken = new \App\Models\WorkingConditionLocation02Todohuken([
+                'name' => $data['todohuken_name'],
+                'code' => sprintf('%02d', $data['todohuken_codo']),
+                'radion_id' => $redion->id,
+            ]);
+            $todohuken->save();
+        }
+
+
+        $redions = \App\Models\WorkingConditionLocation01Redion::all();
+        $todohukens = \App\Models\WorkingConditionLocation02Todohuken::all();
+
+        dd( $todohukens[0] );
+
+    }
+
+
+
 
     /**
      * ==============================================
@@ -52,6 +101,7 @@ class TestController extends Controller
         # CSVデータを連想配列に変換
         $content = str_replace("\n",'',$content);
         $array1 = explode("\r",$content);
+        array_pop($array1);
 
         $array2 = [];
         foreach ($array1 as $line) {

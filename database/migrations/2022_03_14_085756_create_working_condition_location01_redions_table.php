@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkingConditionLocationshichosonsTable extends Migration
+class CreateWorkingConditionLocation01RedionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateWorkingConditionLocationshichosonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('working_condition_locationshichosons', function (Blueprint $table) {
+        Schema::create('working_condition_location01_redions', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name',10)->comment('地域名');
+            $table->boolean('checked')->default(0);
         });
     }
 
@@ -26,6 +27,6 @@ class CreateWorkingConditionLocationshichosonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('working_condition_locationshichosons');
+        Schema::dropIfExists('working_condition_location01_redions');
     }
 }

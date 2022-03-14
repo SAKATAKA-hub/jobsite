@@ -5,7 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WorkingConditionLocationTodohuken extends Model
+/**
+ ***************************************************
+ * 勤務条件/ 勤務地/ 都道府県テーブル　Model
+ ***************************************************
+*/
+class WorkingConditionLocation02Todohuken extends Model
 {
     /*
     |--------------------------------------------------------------------------
@@ -45,4 +50,3 @@ class WorkingConditionLocationTodohuken extends Model
     */
 
 }
-
