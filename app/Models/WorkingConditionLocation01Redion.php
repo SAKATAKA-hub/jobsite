@@ -29,7 +29,11 @@ class WorkingConditionLocation01Redion extends Model
     | リレーション
     |--------------------------------------------------------------------------
     */
-
+    # 都道府県テーブルとのリレーション
+    public function todohukens()
+    {
+        return $this->hasMany(WorkingConditionLocation02Todohuken::class,'radion_id');
+    }
 
 
 

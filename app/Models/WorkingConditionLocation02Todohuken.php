@@ -29,6 +29,11 @@ class WorkingConditionLocation02Todohuken extends Model
     | リレーション
     |--------------------------------------------------------------------------
     */
+    # 市町村テーブルとのリレーション
+    public function shichosons()
+    {
+        return $this->hasMany(WorkingConditionLocation03Shichoson::class,'todohuken_id');
+    }
 
 
 

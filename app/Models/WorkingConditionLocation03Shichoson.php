@@ -29,7 +29,10 @@ class WorkingConditionLocation03Shichoson extends Model
     | リレーション
     |--------------------------------------------------------------------------
     */
-
+    public function kus()
+    {
+        return $this->hasMany(WorkingConditionLocation04Ku::class,'shichoson_id');
+    }
 
 
 

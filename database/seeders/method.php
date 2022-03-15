@@ -23,7 +23,7 @@ class Method
         # CSVデータを連想配列に変換
         $content = str_replace("\n",'',$content);
         $array1 = explode("\r",$content);
-        array_pop($array1);
+        // array_pop($array1);
 
 
         $array2 = [];

@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-
+/**
+ ***************************************************
+ * Controller テスト
+ ***************************************************
+*/
 class TestController extends Controller
 {
     /**
      * 勤務地データの更新
-     *
      * 1)総務省の全国地方公共団体コード一覧サイトを開く
      * 2)"都道府県コード及び市町村コード"のExcelファイルをダウンロード
      * 3)ダウンロードしたファイルをCSV形式で保存。

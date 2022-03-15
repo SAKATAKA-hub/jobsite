@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 /**
  ***************************************************
- * 勤務条件/ 勤務地データ挿入　Seeder
+ * Seeder 勤務条件/ 勤務地データ挿入
  ***************************************************
 */
 class WorkingConditionLocationTablesSeeder extends Seeder
@@ -46,22 +46,22 @@ class WorkingConditionLocationTablesSeeder extends Seeder
         $shikuchoson_data = Method::f_get_csv($puth_shikuchosons);
         $ku_data = Method::f_get_csv($puth_kus);
 
-
-
-
+        // dd($todohuken_data);
+        // dd(count($shikuchoson_data));
+        // dd($shikuchoson_data[count($shikuchoson_data)-1]);
+        // dd(count($ku_data));
+        // dd($ku_data);
         /**
          * --------------------------------
          *  1.地方データ 2.都道府県データの挿入
          * --------------------------------
         */
-        $redion_name = '';
         foreach ($todohuken_data as $data)
         {
             //1. 地方データの挿入
-            if ( $data['redion_name'] !== $redion_name )
+            $old_radion = \App\Models\WorkingConditionLocation01Redion::where('name',$data['redion_name'])->first();
+            if ( empty($old_radion) )
             {
-                $redion_name = $data['redion_name'];
-
                 $redion = new \App\Models\WorkingConditionLocation01Redion([
                     'name' => $data['redion_name'],
                 ]);
