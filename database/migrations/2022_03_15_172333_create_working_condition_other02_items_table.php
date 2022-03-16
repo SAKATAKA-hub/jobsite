@@ -15,7 +15,7 @@ class CreateWorkingConditionOther02ItemsTable extends Migration
     {
         Schema::create('working_condition_other02_items', function (Blueprint $table) {
             $table->id();
-            $table->string('name',10)->comment('条件名');
+            $table->string('name',100)->comment('条件名');
             $table->unsignedBigInteger('group_id')->comment('グループID');
             $table->boolean('checked')->default(0);
 

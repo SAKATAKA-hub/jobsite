@@ -1,6 +1,6 @@
 {{--
 =========================================
-    勤務地　入力一覧
+    勤務地　入力モーダル
 =========================================
 --}}
 
@@ -19,30 +19,30 @@
 </div>
 
 <ul class="list-group">
-    @foreach ($locations as $location)
+    @foreach ($location_radions as $radion)
     <li class="list-group-item bg-light">
 
         <div class="d-flex justify-content-between">
             <div>
                 <!-- チェックボックス -->
-                <input class="form-check-input" type="checkbox" value="" id="location_input{{ $location->id }}">
+                <input class="form-check-input" type="checkbox" value="" id="location_input{{ $radion->id }}">
 
                 <!-- ラベル -->
-                <label class="form-check-label" for="location_input{{ $location->id }}">
-                    <h5>{{ $location->name }}</h5>
+                <label class="form-check-label" for="location_input{{ $radion->id }}">
+                    <h5>{{ $radion->name }}</h5>
                 </label>
             </div>
 
-            <button type="button"  data-bs-toggle="collapse" data-bs-target="#location_itembox{{ $location->id }}" aria-expanded="false" aria-controls="location_itembox{{ $location->id }}">
+            <button type="button"  data-bs-toggle="collapse" data-bs-target="#location_itembox{{ $radion->id }}" aria-expanded="false" aria-controls="location_itembox{{ $radion->id }}">
                 open
             </button>
         </div>
 
 
         {{-- 都道府県 --}}
-        <div class="collapse" id="location_itembox{{ $location->id }}">
+        <div class="collapse" id="location_itembox{{ $radion->id }}">
             <ul class="list-group m-3">
-                @foreach ($location->todohukens as $todohuken)
+                @foreach ($radion->todohukens as $todohuken)
                 <li class="list-group-item">
 
                     <div class="d-flex justify-content-between">
@@ -56,7 +56,7 @@
                             </label>
                         </div>
 
-                        <button type="button"  data-bs-toggle="collapse" data-bs-target="#todohuken_itembox{{ $todohuken->id }}" aria-expanded="false" aria-controls="location_itembox{{ $location->id }}">open</button>
+                        <button type="button"  data-bs-toggle="collapse" data-bs-target="#todohuken_itembox{{ $todohuken->id }}" aria-expanded="false" aria-controls="location_itembox{{ $radion->id }}">open</button>
                     </div>
 
 
@@ -79,7 +79,7 @@
                                     </div>
 
                                     @if ( $shichoson->kus->count() )
-                                    <button type="button"  data-bs-toggle="collapse" data-bs-target="#shichoson_itembox{{ $shichoson->id }}" aria-expanded="false" aria-controls="location_itembox{{ $location->id }}">open</button>
+                                    <button type="button"  data-bs-toggle="collapse" data-bs-target="#shichoson_itembox{{ $shichoson->id }}" aria-expanded="false" aria-controls="location_itembox{{ $radion->id }}">open</button>
                                     @endif
                                 </div>
 

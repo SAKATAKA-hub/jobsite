@@ -21,18 +21,36 @@ class WorkingConditionController extends Controller
     */
     public function list()
     {
-        $locations =\App\Models\WorkingConditionLocation01Redion::all();
+        /*
+         # 勤務地
+         $location_radions[0]->todohukens[0]->shichosons[0]->kus[0] ('地域'->'都道府県'->'市町村'->'区')
+        */
+        $location_radions =\App\Models\WorkingConditionLocation01Redion::all();
 
-        // dd( $locations[0]->todohukens[0]->shichosons[0]->kus->count() );
+        /*
+         # 職種
+         $occupation_group01s[0]->group02s[0]->items[0]
+        */
+        $occupation_group01s = \App\Models\WorkingConditionOccupation01Group01::all();
+
+        /*
+         # 業種
+         $industry_groups[0]->items[0]
+        */
+        $industry_groups = \App\Models\WorkingConditionIndustry01Group::all();
+
+        /*
+         # その他条件
+         $other_groups[0]->items[0]
+        */
+        $other_groups = \App\Models\WorkingConditionOther01Group::all();
 
 
-        return view('working_condition.list',[
-            /**
-             * 勤務地
-             * $locations[0]->todohukens[0]->shichosons[0]->kus[0] ('地域'->'都道府県'->'市町村'->'区')
-            */
-            'locations' => \App\Models\WorkingConditionLocation01Redion::all(),
-        ]);
+
+        # Viewの表示
+        return view('working_condition.list',compact(
+            'location_radions','occupation_group01s','industry_groups','other_groups'
+        ));
     }
 
 
@@ -67,28 +85,108 @@ class WorkingConditionController extends Controller
      * 1)総務省の全国地方公共団体コード一覧サイトを開く
      * 2)"都道府県コード及び市町村コード"のExcelファイルをダウンロード
      * 3)ダウンロードしたファイルをCSV形式で保存。
-     * 4)保存先:storage/app/public/data/csv/location
+     * 4)保存先:storage\app\public\data\csv\location\
      * ----------------------------------------------------
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\View\View
     */
     public function location_update()
     {
+        # 勤務地Seederの実行
         $read_seeder = \Database\Seeders\WorkingConditionLocationTablesSeeder::run();
 
         if($read_seeder){
-            return 'アップデート成功！';
+            return back()->with('ok_message','勤務地データを更新しました。');
         }else{
-            return 'ERR アップデート失敗';
+            return back()->with('err_message','勤務地データの更新に失敗しました。');
+        }
+    }
+
+    /**
+     * 職種の更新(occupation_update)
+     * -- 勤務地データの更新 --------------------------------
+     * 1)職種ファイルをCSV形式で保存。
+     * 2)保存先:storage\app\public\data\csv\occupation.csv
+     * ----------------------------------------------------
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+    */
+    public function occupation_update()
+    {
+        # 職種Seederの実行
+        $read_seeder = \Database\Seeders\WorkingConditionOccupationTablesSeeder::run();
+
+        if($read_seeder){
+            return back()->with('ok_message','職種データを更新しました。');
+        }else{
+            return back()->with('err_message','職種データの更新に失敗しました。');
         }
     }
 
 
+    /**
+     * 業種の更新(industry_update)
+     * -- 勤務地データの更新 --------------------------------
+     * 1)業種ファイルをCSV形式で保存。
+     * 2)保存先:storage\app\public\data\csv\occupation.csv
+     * ----------------------------------------------------
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+    */
+    public function industry_update()
+    {
+        # 業種Seederの実行
+        $read_seeder = \Database\Seeders\WorkingConditionIndustryTablesSeeder::run();
+
+        if($read_seeder){
+            return back()->with('ok_message','業種データを更新しました。');
+        }else{
+            return back()->with('err_message','業種データの更新に失敗しました。');
+        }
+    }
 
 
-    # 職種の更新(occupation_update)
-    # 業種の更新(industry_update)
-    # 駅の更新(train_update)
-    # その他条件の更新(other_update)
+    /**
+     * 駅の更新(train_update)
+     * -- 勤務地データの更新 --------------------------------
+     * 1)駅ファイルをCSV形式で保存。
+     * 2)保存先:storage\app\public\data\csv\occupation.csv
+     * ----------------------------------------------------
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+    */
+    public function train_update()
+    {
+        # 駅Seederの実行
+        // $read_seeder = \Database\Seeders\WorkingConditionOccupationTablesSeeder::run();
+
+        if($read_seeder){
+            return back()->with('ok_message','駅データを更新しました。');
+        }else{
+            return back()->with('err_message','駅データの更新に失敗しました。');
+        }
+    }
+
+
+    /**
+     * その他条件の更新(other_update)
+     * -- 勤務地データの更新 --------------------------------
+     * 1)その他条件ファイルをCSV形式で保存。
+     * 2)保存先:storage\app\public\data\csv\occupation.csv
+     * ----------------------------------------------------
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+    */
+    public function other_update()
+    {
+        # その他条件Seederの実行
+        $read_seeder = \Database\Seeders\WorkingConditionOtherTablesSeeder::run();
+
+        if($read_seeder){
+            return back()->with('ok_message','その他条件データを更新しました。');
+        }else{
+            return back()->with('err_message','その他条件データの更新に失敗しました。');
+        }
+    }
 
 }

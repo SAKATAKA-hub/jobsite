@@ -15,7 +15,7 @@ class CreateWorkingConditionOther01GroupsTable extends Migration
     {
         Schema::create('working_condition_other01_groups', function (Blueprint $table) {
             $table->id();
-            $table->string('name',10)->comment('グループ名');
+            $table->string('name',100)->comment('グループ名');
             $table->boolean('checked')->default(0);
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkingConditionTrain01CompaniesTable extends Migration
+class CreateWorkingConditionTrainLocationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateWorkingConditionTrain01CompaniesTable extends Migration
      */
     public function up()
     {
-        Schema::create('working_condition_train01_companies', function (Blueprint $table) {
+        Schema::create('working_condition_train_locations', function (Blueprint $table) {
             $table->id();
-            $table->string('name',100)->comment('鉄道会社名');
-            $table->boolean('checked')->default(0);
+            $table->timestamps();
         });
     }
 
@@ -27,6 +26,6 @@ class CreateWorkingConditionTrain01CompaniesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('working_condition_train01_companies');
+        Schema::dropIfExists('working_condition_train_locations');
     }
 }

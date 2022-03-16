@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Storage;
 class WorkingConditionLocationTablesSeeder extends Seeder
 {
     /**
-     * 勤務地テーブルデータの挿入
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        # 勤務地のCSVデータパス
+        # CSVデータパス
         $puth_todohukens = 'data/csv/location/todohukens.csv';
         $puth_shikuchosons = 'data/csv/location/shikuchosons.csv';
         $puth_kus = 'data/csv/location/kus.csv';
@@ -33,7 +33,7 @@ class WorkingConditionLocationTablesSeeder extends Seeder
         ) ){ return false; }
 
 
-        # 勤務地データのリセット(Controller読み込み時に必要な処理)
+        # データのリセット(Controller読み込み時に必要な処理)
         $redions = \App\Models\WorkingConditionLocation01Redion::all();
         foreach ($redions as $redion)
         {
@@ -46,11 +46,6 @@ class WorkingConditionLocationTablesSeeder extends Seeder
         $shikuchoson_data = Method::f_get_csv($puth_shikuchosons);
         $ku_data = Method::f_get_csv($puth_kus);
 
-        // dd($todohuken_data);
-        // dd(count($shikuchoson_data));
-        // dd($shikuchoson_data[count($shikuchoson_data)-1]);
-        // dd(count($ku_data));
-        // dd($ku_data);
         /**
          * --------------------------------
          *  1.地方データ 2.都道府県データの挿入

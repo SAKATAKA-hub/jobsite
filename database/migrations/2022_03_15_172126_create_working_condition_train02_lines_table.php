@@ -15,7 +15,7 @@ class CreateWorkingConditionTrain02LinesTable extends Migration
     {
         Schema::create('working_condition_train02_lines', function (Blueprint $table) {
             $table->id();
-            $table->string('name',10)->comment('路線名');
+            $table->string('name',100)->comment('路線名');
             $table->unsignedBigInteger('company_id')->comment('鉄道会社ID');
             $table->boolean('checked')->default(0);
 

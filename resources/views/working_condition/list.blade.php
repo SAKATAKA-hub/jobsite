@@ -9,6 +9,13 @@
     <title>勤務条件リスト</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <style>
+        .wc_list{
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
 
 </head>
 <body class="p-3 bg-white">
@@ -18,50 +25,250 @@
         <h1 class="border-bottom mb-5">勤務条件リスト</h1>
 
 
-        <ul class="list-group">
+        <ul class="wc_list list-group">
+
+            <!-- Alert -->
+            @include('includes.session_alert')
 
 
+            <!--# 勤務地-->
             <li class="list-group-item bg-light">
                 <div class="d-flex justify-content-between align-items-center">
 
                     <h5 class="m-0">勤務地</h5>
-
                     <div>
-                        <button class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#location_table" aria-expanded="false" aria-controls="location_table">
+                        <button class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#locationTable" aria-expanded="false" aria-controls="locationTable">
                             テーブル
                         </button>
                         <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#locationModal">
                             モーダル
                         </button>
+                        {{-- <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#locationCsvModal">
+                            CSV更新
+                        </button> --}}
+                        <a class="btn btn-secondary" href="{{route('wc_location_update')}}">CSV更新</a>
                     </div>
                 </div>
 
-                <div class="collapse" id="location_table">
+                <!-- Table -->
+                <div class="collapse" id="locationTable">
                     @include('working_condition.tables.location')
                 </div>
-
 
                 <!-- Modal -->
                 <div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="locationModalLabel">勤務地</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="locationModalLabel">勤務地</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @include('working_condition.modals.location')
+                            </div>
+                            <div class="modal-footer">
+                                <div class="w-100  text-center">
+                                    <button class="btn btn-primary btn-lg w-100"  data-bs-dismiss="modal" aria-label="Close">
+                                        希望勤務地を保存
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            @include('working_condition.inputs.location')
-                        </div>
-                    </div>
                     </div>
                 </div>
             </li>
 
 
-            <li class="list-group-item bg-light">職種</li>
-            <li class="list-group-item bg-light">業種</li>
-            <li class="list-group-item bg-light">駅</li>
-            <li class="list-group-item bg-light">その他</li>
+            <!--# 職種-->
+            <li class="list-group-item bg-light">
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <h5 class="m-0">職種</h5>
+                    <div>
+                        <button class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#occupationTable" aria-expanded="false" aria-controls="occupationTable">
+                            テーブル
+                        </button>
+                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#occupationModal">
+                            モーダル
+                        </button>
+                        {{-- <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#occupationCsvModal">
+                            CSV更新
+                        </button> --}}
+                        <a class="btn btn-secondary" href="{{route('wc_occupation_update')}}">CSV更新</a>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="collapse" id="occupationTable">
+                    @include('working_condition.tables.occupation')
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="occupationModal" tabindex="-1" aria-labelledby="occupationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="occupationModalLabel">職種</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @include('working_condition.modals.occupation')
+                            </div>
+                            <div class="modal-footer">
+                                <div class="w-100  text-center">
+                                    <button class="btn btn-primary btn-lg w-100"  data-bs-dismiss="modal" aria-label="Close">
+                                        希望職種を保存
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+
+            <!--# 業種-->
+            <li class="list-group-item bg-light">
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <h5 class="m-0">業種</h5>
+                    <div>
+                        <button class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#industryTable" aria-expanded="false" aria-controls="industryTable">
+                            テーブル
+                        </button>
+                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#industryModal">
+                            モーダル
+                        </button>
+                        {{-- <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#industryCsvModal">
+                            CSV更新
+                        </button> --}}
+                        <a class="btn btn-secondary" href="{{route('wc_industry_update')}}">CSV更新</a>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="collapse" id="industryTable">
+                    @include('working_condition.tables.industry')
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="industryModal" tabindex="-1" aria-labelledby="industryModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="industryModalLabel">業種</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @include('working_condition.modals.industry')
+                            </div>
+                            <div class="modal-footer">
+                                <div class="w-100  text-center">
+                                    <button class="btn btn-primary btn-lg w-100"  data-bs-dismiss="modal" aria-label="Close">
+                                        希望業種を保存
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+
+            <!--# 駅(路線)-->
+            <li class="list-group-item bg-light">
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <h5 class="m-0">駅(路線)</h5>
+                    <div>
+                        <button class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#trainTable" aria-expanded="false" aria-controls="trainTable">
+                            テーブル
+                        </button>
+                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#trainModal">
+                            モーダル
+                        </button>
+                        {{-- <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#trainCsvModal">
+                            CSV更新
+                        </button> --}}
+                        <a class="btn btn-secondary" href="{{route('wc_train_update')}}">CSV更新</a>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="collapse" id="trainTable">
+                    @include('working_condition.tables.train')
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="trainModal" tabindex="-1" aria-labelledby="trainModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="trainModalLabel">駅(路線)</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @include('working_condition.modals.train')
+                            </div>
+                            <div class="modal-footer">
+                                <div class="w-100  text-center">
+                                    <button class="btn btn-primary btn-lg w-100"  data-bs-dismiss="modal" aria-label="Close">
+                                        希望駅(路線)を保存
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+
+            <!--# その他条件-->
+            <li class="list-group-item bg-light">
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <h5 class="m-0">その他条件</h5>
+                    <div>
+                        <button class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#otherTable" aria-expanded="false" aria-controls="otherTable">
+                            テーブル
+                        </button>
+                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#otherModal">
+                            モーダル
+                        </button>
+                        {{-- <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#otherCsvModal">
+                            CSV更新
+                        </button> --}}
+                        <a class="btn btn-secondary" href="{{route('wc_other_update')}}">CSV更新</a>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="collapse" id="otherTable">
+                    @include('working_condition.tables.other')
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="otherModal" tabindex="-1" aria-labelledby="otherModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="otherModalLabel">その他条件</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @include('working_condition.modals.other')
+                            </div>
+                            <div class="modal-footer">
+                                <div class="w-100  text-center">
+                                    <button class="btn btn-primary btn-lg w-100"  data-bs-dismiss="modal" aria-label="Close">
+                                        希望その他条件を保存
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
         </ul>
 
 

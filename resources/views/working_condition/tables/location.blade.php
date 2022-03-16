@@ -4,7 +4,7 @@
 =========================================
 --}}
 
-<table class="table border mt-5">
+<table class="table border mt-5  bg-white">
     <thead>
         <tr>
             <th scope="col">地域</th>
@@ -14,28 +14,18 @@
         </tr>
     </thead>
     <tbody>
+
         {{-- 地域 --}}
-        @foreach ($locations as $location)
-        {{-- <tr>
-            <th scope="row">{{  $location->name }}</th>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr> --}}
+        @foreach ($location_radions as $radion)
 
             {{-- 都道府県 --}}
-            @foreach ($location->todohukens as $todohuken)
-            {{-- <tr>
-                <th scope="row"></th>
-                <td>{{ $todohuken->name }}</td>
-                <td></td>
-                <td></td>
-            </tr> --}}
+            @foreach ($radion->todohukens as $todohuken)
+
 
                 {{-- 市町村 --}}
                 @foreach ($todohuken->shichosons as $shichoson)
                 <tr>
-                    <th scope="row">{{  $location->name }}</th>
+                    <th scope="row">{{  $radion->name }}</th>
                     <td>{{ $todohuken->name }}</td>
                     <td>{{ $shichoson->name }}</td>
                     <td>---</td>
@@ -44,7 +34,7 @@
                     {{-- 区 --}}
                     @foreach ($shichoson->kus as $ku)
                     <tr>
-                        <th scope="row">{{  $location->name }}</th>
+                        <th scope="row">{{  $radion->name }}</th>
                         <td>{{ $todohuken->name }}</td>
                         <td>{{ $shichoson->name }}</td>
                             <td>{{ $ku->name }}</td>

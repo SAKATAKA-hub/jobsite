@@ -15,7 +15,7 @@ class CreateWorkingConditionOccupation03ItemsTable extends Migration
     {
         Schema::create('working_condition_occupation03_items', function (Blueprint $table) {
             $table->id();
-            $table->string('name',10)->comment('職種名');
+            $table->string('name',100)->comment('職種名');
             $table->unsignedBigInteger('group02_id')->comment('グループ02ID');
             $table->boolean('checked')->default(0);
 
