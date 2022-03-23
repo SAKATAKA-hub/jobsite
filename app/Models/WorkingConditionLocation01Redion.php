@@ -37,14 +37,6 @@ class WorkingConditionLocation01Redion extends Model
 
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | アクセサー
-    |--------------------------------------------------------------------------
-    */
-
-
-
 
 
     /*
@@ -52,5 +44,25 @@ class WorkingConditionLocation01Redion extends Model
     | ローカルスコープ
     |--------------------------------------------------------------------------
     */
+    #  API用データ取得
+    public function scopeForApi($query)
+    {
+        $radions = $query->get();
+        foreach ($radions as $radion) {
+
+            //都道府県データとのリレーション
+            $radion->rel_todohukens = WorkingConditionLocation02Todohuken::forApi($radion->id);
+        }
+        return $radions;
+    }
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | アクセサー
+    |--------------------------------------------------------------------------
+    */
+
 
 }

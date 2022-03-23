@@ -35,6 +35,7 @@ class WorkingConditionOccupationTablesSeeder extends Seeder
         }
 
 
+
         # CSVファイルの読み込み
         $occupations_data = Method::f_get_csv($puth_occupations);
 

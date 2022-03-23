@@ -36,14 +36,6 @@ class WorkingConditionLocation03Shichoson extends Model
 
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | アクセサー
-    |--------------------------------------------------------------------------
-    */
-
-
-
 
 
     /*
@@ -51,5 +43,26 @@ class WorkingConditionLocation03Shichoson extends Model
     | ローカルスコープ
     |--------------------------------------------------------------------------
     */
+        #  API用データ取得
+        public function scopeForApi($query, $todohuken_id)
+        {
+            $shichosons = $query->where('todohuken_id',$todohuken_id)->get();
+            foreach ($shichosons as $shichoson) {
+
+                //都道府県データとのリレーション
+                $shichoson->rel_kus = WorkingConditionLocation04Ku::where('shichoson_id',$shichoson->id)->get();
+            }
+            return $shichosons;
+        }
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | アクセサー
+    |--------------------------------------------------------------------------
+    */
+
 
 }

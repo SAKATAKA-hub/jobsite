@@ -25,17 +25,16 @@ class DatabaseSeeder extends Seeder
             WorkingConditionLocationTablesSeeder::class,
 
             # 職種
-
+            WorkingConditionOccupationTablesSeeder::class,
 
             # 業種
-
+            WorkingConditionIndustryTablesSeeder::class,
 
             # 駅(路線)
-
+            WorkingConditionTrainTablesSeeder::class,
 
             # その他
-
-
+            WorkingConditionOtherTablesSeeder::class,
 
         ]);
     }

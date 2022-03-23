@@ -19,9 +19,14 @@ Route::get('/working_condition/list',[WorkingConditionController::class,'list'])
 # 勤務地API(location_api)
 Route::get('/working_condition/location/api',[WorkingConditionController::class,'location_api'])
 ->name('wc_location_api');
+
 # 職種API(occupation_api)
 # 業種API(industry_api)
+
 # 駅API(train_api)
+Route::get('/working_condition/train/api',[WorkingConditionController::class,'train_api'])
+->name('wc_train_api');
+
 # その他条件API(other_api)
 
 

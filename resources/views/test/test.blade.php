@@ -4,53 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>app test</title>
-
+    <!-- token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- route -->
+    <meta name="wc_train_api" content="{{route('wc_train_api')}}">
+
+
+    <title>テスト</title>
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <style>
+        .wc_list{
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
 
 </head>
-<body>
-
-    <!-- #app -->
-    <div id="app">
-        <button-counter></button-counter>
-    </div>
-
-    <h1>test</h1>
-
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button>
+<body class="p-3 bg-white">
+    <main id="app" class="m-3">
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h1 class="border-bottom mb-5">勤務条件リスト</h1>
+
+        <div class="wc_list card p-3 mb-5">
+            <h3>駅(路線) 入力モーダル</h3>
+            <train-component></train-component>
+
         </div>
-        <div class="modal-body">
-            ...
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-        </div>
-    </div>
-    </div>
-    <!-- end Modal -->
 
 
-
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
-    <script src="{{ asset('/js/component/button-counter.js') }}"></script>
-    <script src="{{ asset('/js/vue.js') }}"></script>
-    <script src="{{ asset('/js/app.js') }}"></script>
-
+    </main>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
 </body>
 </html>
+

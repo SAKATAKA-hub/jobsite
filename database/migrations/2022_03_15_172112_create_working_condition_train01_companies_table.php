@@ -16,6 +16,8 @@ class CreateWorkingConditionTrain01CompaniesTable extends Migration
         Schema::create('working_condition_train01_companies', function (Blueprint $table) {
             $table->id();
             $table->string('name',100)->comment('鉄道会社名');
+            $table->integer('code')->comment('鉄道会社コード');
+            $table->string('todohuken_code',10)->comment('都道府県コード');
             $table->boolean('checked')->default(0);
         });
     }

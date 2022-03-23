@@ -40,6 +40,13 @@ class WorkingConditionController extends Controller
         $industry_groups = \App\Models\WorkingConditionIndustry01Group::all();
 
         /*
+         # 駅(路線)
+         $train_companies[0]->lines[0]->stations
+        */
+        $train_companies =
+        \App\Models\WorkingConditionTrain01Company::where('todohuken_code','00')->get();
+
+        /*
          # その他条件
          $other_groups[0]->items[0]
         */
@@ -49,7 +56,7 @@ class WorkingConditionController extends Controller
 
         # Viewの表示
         return view('working_condition.list',compact(
-            'location_radions','occupation_group01s','industry_groups','other_groups'
+            'location_radions','occupation_group01s','industry_groups','train_companies','other_groups'
         ));
     }
 
@@ -68,7 +75,20 @@ class WorkingConditionController extends Controller
 
     # 職種API(occupation_api)
     # 業種API(industry_api)
+
     # 駅API(train_api)
+    public function train_api()
+    {
+        // $dd= \App\Models\WorkingConditionLocation01Redion::forApi();
+        // dd($dd[0]->rel_todohukens[0]->rel_shichosons[0]->kus);
+
+
+        return response()->json([
+            'text' => 'train_api',
+            'location_radions' => \App\Models\WorkingConditionLocation01Redion::forApi(),
+        ]);
+    }
+
     # その他条件API(other_api)
 
 
@@ -158,7 +178,7 @@ class WorkingConditionController extends Controller
     public function train_update()
     {
         # 駅Seederの実行
-        // $read_seeder = \Database\Seeders\WorkingConditionOccupationTablesSeeder::run();
+        $read_seeder = \Database\Seeders\WorkingConditionTrainTablesSeeder::run();
 
         if($read_seeder){
             return back()->with('ok_message','駅データを更新しました。');

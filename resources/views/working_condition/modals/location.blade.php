@@ -4,7 +4,6 @@
 =========================================
 --}}
 
-
 {{-- 地域 --}}
 <div class="d-flex justify-content-between">
     <div>
@@ -84,7 +83,7 @@
                                 </div>
 
 
-                                    {{-- 区 --}}
+                                {{-- 区 --}}
                                 <div class="collapse" id="shichoson_itembox{{ $shichoson->id }}" >
                                     <div class="d-flex flex-wrap">
                                         @foreach ($shichoson->kus as $ku)
@@ -100,7 +99,6 @@
                                         </div>
                                         @endforeach
                                     </div>
-
                                 </div>
 
                             </li>

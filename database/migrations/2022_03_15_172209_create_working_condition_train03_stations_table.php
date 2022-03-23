@@ -16,7 +16,10 @@ class CreateWorkingConditionTrain03StationsTable extends Migration
         Schema::create('working_condition_train03_stations', function (Blueprint $table) {
             $table->id();
             $table->string('name',100)->comment('駅名');
+            $table->string('code',10)->comment('駅コード');
             $table->unsignedBigInteger('line_id')->comment('路線ID');
+            $table->integer('line_code')->comment('路線コード');
+            $table->string('todohuken_code',10)->comment('都道府県コード');
             $table->boolean('checked')->default(0);
 
             $table->foreign('line_id')
