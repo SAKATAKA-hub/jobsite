@@ -37,6 +37,27 @@ class WorkingConditionOccupation02Group02 extends Model
 
 
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | ローカルスコープ
+    |--------------------------------------------------------------------------
+    */
+    #  API用データ取得
+    public function scopeForApi($query, $group01_id)
+    {
+        $group02s = $query->where('group01_id',$group01_id)->get();
+        foreach ($group02s as $group02) {
+
+            //都道府県データとのリレーション
+            $group02->rel_items = WorkingConditionOccupation03Item::where('group02_id',$group02->id)->get();;
+        }
+        return $group02s;
+    }
+
+
+
+
     /*
     |--------------------------------------------------------------------------
     | アクセサー
@@ -46,11 +67,5 @@ class WorkingConditionOccupation02Group02 extends Model
 
 
 
-
-    /*
-    |--------------------------------------------------------------------------
-    | ローカルスコープ
-    |--------------------------------------------------------------------------
-    */
 
 }

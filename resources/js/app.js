@@ -22,11 +22,23 @@ window.Vue = require('vue').default;
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 
-
 Vue.component('train-component', require('./components/TrainComponent.vue').default);
 
 
+// 勤務地チェックボックス　
+Vue.component('cheakbox-location-component', require('./components/CheakboxLocationComponent.vue').default);
 
+// 職種チェックボックス
+Vue.component('cheakbox-industry-component', require('./components/ChakboxIndustryComponent.vue').default);
+
+// 業種チェックボックス
+Vue.component('cheakbox-occupation-component', require('./components/ChakboxOccupationComponent.vue').default);
+
+// 駅(路線)チェックボックス
+Vue.component('cheakbox-train-component', require('./components/ChakboxTrainComponent.vue').default);
+
+// その他条件チェックボックス
+Vue.component('cheakbox-other-component', require('./components/ChakboxOtherComponent.vue').default);
 
 
 /**

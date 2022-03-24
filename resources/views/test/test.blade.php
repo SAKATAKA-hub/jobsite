@@ -7,7 +7,11 @@
     <!-- token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- route -->
+    <meta name="wc_location_api" content="{{route('wc_location_api')}}">
+    <meta name="wc_occupation_api" content="{{route('wc_occupation_api')}}">
+    <meta name="wc_industry_api" content="{{route('wc_industry_api')}}">
     <meta name="wc_train_api" content="{{route('wc_train_api')}}">
+    <meta name="wc_other_api" content="{{route('wc_other_api')}}">
 
 
     <title>テスト</title>
@@ -29,9 +33,10 @@
         <h1 class="border-bottom mb-5">勤務条件リスト</h1>
 
         <div class="wc_list card p-3 mb-5">
-            <h3>駅(路線) 入力モーダル</h3>
-            <train-component></train-component>
-
+            {{-- <train-component></train-component> --}}
+            {{-- <cheakbox-location-component></cheakbox-location-component> --}}
+            <h3> 職種入力モーダル</h3>
+            <cheakbox-occupation-component></cheakbox-occupation-component>
         </div>
 
 

@@ -70,23 +70,38 @@ class WorkingConditionController extends Controller
     # 勤務地API(location_api)
     public function location_api()
     {
-        return 'location_api';
+        return response()->json([
+            'location_radions' => \App\Models\WorkingConditionLocation01Redion::forApi(),
+        ]);
     }
 
     # 職種API(occupation_api)
+    public function occupation_api()
+    {
+        $dd= \App\Models\WorkingConditionOccupation01Group01::forApi();
+        // dd( $dd[0]->rel_group02s[0]->rel_items[0] );
+        return response()->json([
+            'occupation_group01s' => \App\Models\WorkingConditionOccupation01Group01::forApi(),
+        ]);
+    }
+
     # 業種API(industry_api)
+    public function industry_api()
+    {
+        // $dd= \App\Models\WorkingConditionLocation01Redion::all();
+        // dd( $dd[0] );
+        // return response()->json([
+        //     'industry' => \App\Models\WorkingConditionLocation01Redion::all(),
+        // ]);
+    }
+
+
+    # 職種API(occupation_api)
 
     # 駅API(train_api)
     public function train_api()
     {
-        // $dd= \App\Models\WorkingConditionLocation01Redion::forApi();
-        // dd($dd[0]->rel_todohukens[0]->rel_shichosons[0]->kus);
 
-
-        return response()->json([
-            'text' => 'train_api',
-            'location_radions' => \App\Models\WorkingConditionLocation01Redion::forApi(),
-        ]);
     }
 
     # その他条件API(other_api)
