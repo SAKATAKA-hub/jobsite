@@ -36,6 +36,57 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -45,12 +96,13 @@ __webpack_require__.r(__webpack_exports__);
       },
       industry: {
         cheked: false,
-        group1: []
+        groups: []
       }
     };
   },
   mounted: function mounted() {
-    // console.log(this.route.wc_industry_api);
+    var _this = this;
+
     fetch(this.route.wc_industry_api).then(function (response) {
       if (!response.ok) {
         throw new Error();
@@ -59,8 +111,9 @@ __webpack_require__.r(__webpack_exports__);
       return response.json();
     }).then(function (json) {
       // JSONをdataにコピー
-      console.log(json); // this.location.radions = json.location_radions;
-      //  console.log(this.location.radions);
+      // console.log(json);
+      _this.industry.groups = json.industry_groups;
+      console.log(_this.industry.groups);
     })["catch"](function (error) {
       alert('データの読み込みに失敗しました。');
     });
@@ -82,7 +135,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
 //
 //
 //
@@ -259,9 +311,97 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      csrf_token: document.querySelector('meta[name="csrf-token"]').content,
+      route: {
+        wc_other_api: document.querySelector('meta[name="wc_other_api"]').content
+      },
+      other: {
+        cheked: false,
+        groups: []
+      }
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    var _this = this;
+
+    fetch(this.route.wc_other_api).then(function (response) {
+      if (!response.ok) {
+        throw new Error();
+      }
+
+      return response.json();
+    }).then(function (json) {
+      // JSONをdataにコピー
+      console.log(json);
+      _this.other.groups = json.other_groups;
+      console.log(_this.other.groups);
+    })["catch"](function (error) {
+      alert('データの読み込みに失敗しました。');
+    });
+  },
+  methods: {//
   }
 });
 
@@ -294,9 +434,192 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      csrf_token: document.querySelector('meta[name="csrf-token"]').content,
+      route: {
+        wc_train_api: document.querySelector('meta[name="wc_train_api"]').content
+      },
+      location: {
+        cheked: false,
+        radions: []
+      }
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    var _this = this;
+
+    fetch(this.route.wc_train_api).then(function (response) {
+      if (!response.ok) {
+        throw new Error();
+      }
+
+      return response.json();
+    }).then(function (json) {
+      // JSONをdataにコピー
+      // console.log(json.location_radions[0]);
+      _this.location.radions = json.location_radions;
+      console.log(_this.location.radions);
+    })["catch"](function (error) {
+      alert('データの読み込みに失敗しました。');
+    });
+  },
+  methods: {//
   }
 });
 
@@ -313,7 +636,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
 //
 //
 //
@@ -1432,30 +1754,217 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm.industry.groups.length
+      ? _c("div", { staticClass: "d-flex align-items-center mb-3" }, [
+          _c("input", {
+            staticClass: "form-check-input fs-5 m-0",
+            attrs: { type: "checkbox", id: "industry_input_all" },
+          }),
+          _vm._v(" "),
+          _vm._m(0),
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "list-group" },
+      _vm._l(_vm.industry.groups, function (group) {
+        return _c(
+          "li",
+          { key: group.id, staticClass: "list-group-item bg-light" },
+          [
+            _c("div", { staticClass: "d-flex justify-content-between" }, [
+              _c("div", { staticClass: "d-flex align-items-center" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: group.cheked,
+                      expression: " group.cheked",
+                    },
+                  ],
+                  staticClass: "form-check-input fs-5 m-0",
+                  attrs: { type: "checkbox", id: "industry_input" + group.id },
+                  domProps: {
+                    checked: Array.isArray(group.cheked)
+                      ? _vm._i(group.cheked, null) > -1
+                      : group.cheked,
+                  },
+                  on: {
+                    change: function ($event) {
+                      var $$a = group.cheked,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(group, "cheked", $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              group,
+                              "cheked",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(group, "cheked", $$c)
+                      }
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "industry_input" + group.id },
+                  },
+                  [
+                    _c("h5", { staticClass: "m-0 ms-1" }, [
+                      _vm._v(_vm._s(group.name)),
+                    ]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary",
+                  attrs: {
+                    type: "button",
+                    "data-bs-toggle": "collapse",
+                    "data-bs-target": "#industry_itembox" + group.id,
+                    "aria-expanded": "false",
+                    "aria-controls": "industry_itembox" + group.id,
+                  },
+                },
+                [_vm._v("open")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "collapse",
+                attrs: { id: "industry_itembox" + group.id },
+              },
+              [
+                _c(
+                  "ul",
+                  { staticClass: "list-group m-3" },
+                  _vm._l(group.rel_items, function (item) {
+                    return _c(
+                      "li",
+                      {
+                        key: item.id,
+                        staticClass: "list-group-item bg-light bg-white",
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "d-flex justify-content-between" },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "d-flex align-items-center" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: item.cheked,
+                                      expression: "item.cheked",
+                                    },
+                                  ],
+                                  staticClass: "form-check-input fs-5 m-0",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "item_input" + item.id,
+                                  },
+                                  domProps: {
+                                    checked: Array.isArray(item.cheked)
+                                      ? _vm._i(item.cheked, null) > -1
+                                      : item.cheked,
+                                  },
+                                  on: {
+                                    change: function ($event) {
+                                      var $$a = item.cheked,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = null,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            _vm.$set(
+                                              item,
+                                              "cheked",
+                                              $$a.concat([$$v])
+                                            )
+                                        } else {
+                                          $$i > -1 &&
+                                            _vm.$set(
+                                              item,
+                                              "cheked",
+                                              $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1))
+                                            )
+                                        }
+                                      } else {
+                                        _vm.$set(item, "cheked", $$c)
+                                      }
+                                    },
+                                  },
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "form-check-label",
+                                    attrs: { for: "item_input" + item.id },
+                                  },
+                                  [
+                                    _c("h6", { staticClass: "m-0 ms-1" }, [
+                                      _vm._v(" " + _vm._s(item.name)),
+                                    ]),
+                                  ]
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                      ]
+                    )
+                  }),
+                  0
+                ),
+              ]
+            ),
+          ]
+        )
+      }),
+      0
+    ),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "d-flex align-items-center mb-3" }, [
-        _c("input", {
-          staticClass: "form-check-input fs-5 m-0",
-          attrs: { type: "checkbox", id: "industry_input_all" },
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          {
-            staticClass: "form-check-label",
-            attrs: { for: "industry_input_all" },
-          },
-          [_c("h5", { staticClass: "m-0 ms-1" }, [_vm._v("全ての職種")])]
-        ),
-      ]),
-    ])
+    return _c(
+      "label",
+      { staticClass: "form-check-label", attrs: { for: "industry_input_all" } },
+      [_c("h5", { staticClass: "m-0 ms-1" }, [_vm._v("全ての職種")])]
+    )
   },
 ]
 render._withStripped = true
@@ -1481,7 +1990,16 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _vm.occupation.group01s.length
+      ? _c("div", { staticClass: "d-flex align-items-center mb-3 " }, [
+          _c("input", {
+            staticClass: "form-check-input fs-5 m-0",
+            attrs: { type: "checkbox", id: "occupation_input_all" },
+          }),
+          _vm._v(" "),
+          _vm._m(0),
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c(
       "ul",
@@ -1827,21 +2345,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex align-items-center mb-3" }, [
-      _c("input", {
-        staticClass: "form-check-input fs-5 m-0",
-        attrs: { type: "checkbox", id: "occupation_input_all" },
-      }),
-      _vm._v(" "),
-      _c(
-        "label",
-        {
-          staticClass: "form-check-label",
-          attrs: { for: "occupation_input_all" },
-        },
-        [_c("h5", { staticClass: "m-0 ms-1" }, [_vm._v("全ての職種")])]
-      ),
-    ])
+    return _c(
+      "label",
+      {
+        staticClass: "form-check-label",
+        attrs: { for: "occupation_input_all" },
+      },
+      [_c("h5", { staticClass: "m-0 ms-1" }, [_vm._v("全ての職種")])]
+    )
   },
 ]
 render._withStripped = true
@@ -1866,30 +2377,217 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm.other.groups.length
+      ? _c("div", { staticClass: "d-flex align-items-center mb-3" }, [
+          _c("input", {
+            staticClass: "form-check-input fs-5 m-0",
+            attrs: { type: "checkbox", id: "other_input_all" },
+          }),
+          _vm._v(" "),
+          _vm._m(0),
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "list-group" },
+      _vm._l(_vm.other.groups, function (group) {
+        return _c(
+          "li",
+          { key: group.id, staticClass: "list-group-item bg-light" },
+          [
+            _c("div", { staticClass: "d-flex justify-content-between" }, [
+              _c("div", { staticClass: "d-flex align-items-center" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: group.cheked,
+                      expression: " group.cheked",
+                    },
+                  ],
+                  staticClass: "form-check-input fs-5 m-0",
+                  attrs: { type: "checkbox", id: "other_input" + group.id },
+                  domProps: {
+                    checked: Array.isArray(group.cheked)
+                      ? _vm._i(group.cheked, null) > -1
+                      : group.cheked,
+                  },
+                  on: {
+                    change: function ($event) {
+                      var $$a = group.cheked,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(group, "cheked", $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              group,
+                              "cheked",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(group, "cheked", $$c)
+                      }
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "other_input" + group.id },
+                  },
+                  [
+                    _c("h5", { staticClass: "m-0 ms-1" }, [
+                      _vm._v(_vm._s(group.name)),
+                    ]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary",
+                  attrs: {
+                    type: "button",
+                    "data-bs-toggle": "collapse",
+                    "data-bs-target": "#other_itembox" + group.id,
+                    "aria-expanded": "false",
+                    "aria-controls": "other_itembox" + group.id,
+                  },
+                },
+                [_vm._v("open")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "collapse",
+                attrs: { id: "other_itembox" + group.id },
+              },
+              [
+                _c(
+                  "ul",
+                  { staticClass: "list-group m-3" },
+                  _vm._l(group.rel_items, function (item) {
+                    return _c(
+                      "li",
+                      {
+                        key: item.id,
+                        staticClass: "list-group-item bg-light bg-white",
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "d-flex justify-content-between" },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "d-flex align-items-center" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: item.cheked,
+                                      expression: "item.cheked",
+                                    },
+                                  ],
+                                  staticClass: "form-check-input fs-5 m-0",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "item_input" + item.id,
+                                  },
+                                  domProps: {
+                                    checked: Array.isArray(item.cheked)
+                                      ? _vm._i(item.cheked, null) > -1
+                                      : item.cheked,
+                                  },
+                                  on: {
+                                    change: function ($event) {
+                                      var $$a = item.cheked,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = null,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            _vm.$set(
+                                              item,
+                                              "cheked",
+                                              $$a.concat([$$v])
+                                            )
+                                        } else {
+                                          $$i > -1 &&
+                                            _vm.$set(
+                                              item,
+                                              "cheked",
+                                              $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1))
+                                            )
+                                        }
+                                      } else {
+                                        _vm.$set(item, "cheked", $$c)
+                                      }
+                                    },
+                                  },
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "form-check-label",
+                                    attrs: { for: "item_input" + item.id },
+                                  },
+                                  [
+                                    _c("h6", { staticClass: "m-0 ms-1" }, [
+                                      _vm._v(" " + _vm._s(item.name)),
+                                    ]),
+                                  ]
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                      ]
+                    )
+                  }),
+                  0
+                ),
+              ]
+            ),
+          ]
+        )
+      }),
+      0
+    ),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component"),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              ),
-            ]),
-          ]),
-        ]),
-      ]),
-    ])
+    return _c(
+      "label",
+      { staticClass: "form-check-label", attrs: { for: "other_input_all" } },
+      [_c("h5", { staticClass: "m-0 ms-1" }, [_vm._v("全ての職種")])]
+    )
   },
 ]
 render._withStripped = true
@@ -1914,30 +2612,812 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm.location.radions.length
+      ? _c("div", { staticClass: "d-flex align-items-center mb-3" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.location.cheked,
+                expression: "location.cheked",
+              },
+            ],
+            staticClass: "form-check-input fs-5 m-0",
+            attrs: { type: "checkbox", id: "train_location_input_all" },
+            domProps: {
+              checked: Array.isArray(_vm.location.cheked)
+                ? _vm._i(_vm.location.cheked, null) > -1
+                : _vm.location.cheked,
+            },
+            on: {
+              change: function ($event) {
+                var $$a = _vm.location.cheked,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = null,
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 &&
+                      _vm.$set(_vm.location, "cheked", $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.location,
+                        "cheked",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
+                } else {
+                  _vm.$set(_vm.location, "cheked", $$c)
+                }
+              },
+            },
+          }),
+          _vm._v(" "),
+          _vm._m(0),
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "list-group" },
+      _vm._l(_vm.location.radions, function (radion) {
+        return _c(
+          "li",
+          { key: radion.id, staticClass: "list-group-item bg-light" },
+          [
+            _c("div", { staticClass: "d-flex justify-content-between" }, [
+              _c("div", { staticClass: "d-flex align-items-center" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: radion.cheked,
+                      expression: "radion.cheked",
+                    },
+                  ],
+                  staticClass: "form-check-input fs-5 m-0",
+                  attrs: {
+                    type: "checkbox",
+                    id: "train_location_input" + radion.id,
+                  },
+                  domProps: {
+                    checked: Array.isArray(radion.cheked)
+                      ? _vm._i(radion.cheked, null) > -1
+                      : radion.cheked,
+                  },
+                  on: {
+                    change: function ($event) {
+                      var $$a = radion.cheked,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(radion, "cheked", $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              radion,
+                              "cheked",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(radion, "cheked", $$c)
+                      }
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "train_location_input" + radion.id },
+                  },
+                  [
+                    _c("h5", { staticClass: "m-0 ms-1" }, [
+                      _vm._v(_vm._s(radion.name)),
+                    ]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary",
+                  attrs: {
+                    type: "button",
+                    "data-bs-toggle": "collapse",
+                    "data-bs-target": "#train_location_itembox" + radion.id,
+                    "aria-expanded": "false",
+                    "aria-controls": "train_location_itembox" + radion.id,
+                  },
+                },
+                [_vm._v("open")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "collapse",
+                attrs: { id: "train_location_itembox" + radion.id },
+              },
+              [
+                _c(
+                  "ul",
+                  { staticClass: "list-group m-3" },
+                  _vm._l(radion.rel_todohukens, function (todohuken) {
+                    return _c(
+                      "li",
+                      {
+                        key: todohuken.id,
+                        staticClass: "list-group-item bg-light bg-white",
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "d-flex justify-content-between" },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "d-flex align-items-center" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: todohuken.cheked,
+                                      expression: "todohuken.cheked",
+                                    },
+                                  ],
+                                  staticClass: "form-check-input fs-5 m-0",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "train_todohuken_input" + todohuken.id,
+                                  },
+                                  domProps: {
+                                    checked: Array.isArray(todohuken.cheked)
+                                      ? _vm._i(todohuken.cheked, null) > -1
+                                      : todohuken.cheked,
+                                  },
+                                  on: {
+                                    change: function ($event) {
+                                      var $$a = todohuken.cheked,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = null,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            _vm.$set(
+                                              todohuken,
+                                              "cheked",
+                                              $$a.concat([$$v])
+                                            )
+                                        } else {
+                                          $$i > -1 &&
+                                            _vm.$set(
+                                              todohuken,
+                                              "cheked",
+                                              $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1))
+                                            )
+                                        }
+                                      } else {
+                                        _vm.$set(todohuken, "cheked", $$c)
+                                      }
+                                    },
+                                  },
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "form-check-label",
+                                    attrs: {
+                                      for:
+                                        "train_todohuken_input" + todohuken.id,
+                                    },
+                                  },
+                                  [
+                                    _c("h6", { staticClass: "m-0 ms-1" }, [
+                                      _vm._v(" " + _vm._s(todohuken.name)),
+                                    ]),
+                                  ]
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-secondary",
+                                attrs: {
+                                  type: "button",
+                                  "data-bs-toggle": "collapse",
+                                  "data-bs-target":
+                                    "#train_todohuken_itembox" + todohuken.id,
+                                  "aria-expanded": "false",
+                                  "aria-controls":
+                                    "train_todohuken_itembox" + todohuken.id,
+                                },
+                              },
+                              [_vm._v("open")]
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "collapse",
+                            attrs: {
+                              id: "train_todohuken_itembox" + todohuken.id,
+                            },
+                          },
+                          [
+                            _c(
+                              "ul",
+                              { staticClass: "list-group m-3" },
+                              _vm._l(
+                                todohuken.rel_train_companys,
+                                function (company) {
+                                  return _c(
+                                    "li",
+                                    {
+                                      key: company.id,
+                                      staticClass:
+                                        "list-group-item bg-light bg-white",
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "d-flex justify-content-between",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "d-flex align-items-center",
+                                            },
+                                            [
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: company.cheked,
+                                                    expression:
+                                                      "company.cheked",
+                                                  },
+                                                ],
+                                                staticClass:
+                                                  "form-check-input fs-5 m-0",
+                                                attrs: {
+                                                  type: "checkbox",
+                                                  id:
+                                                    "company_input" +
+                                                    company.id,
+                                                },
+                                                domProps: {
+                                                  checked: Array.isArray(
+                                                    company.cheked
+                                                  )
+                                                    ? _vm._i(
+                                                        company.cheked,
+                                                        null
+                                                      ) > -1
+                                                    : company.cheked,
+                                                },
+                                                on: {
+                                                  change: function ($event) {
+                                                    var $$a = company.cheked,
+                                                      $$el = $event.target,
+                                                      $$c = $$el.checked
+                                                        ? true
+                                                        : false
+                                                    if (Array.isArray($$a)) {
+                                                      var $$v = null,
+                                                        $$i = _vm._i($$a, $$v)
+                                                      if ($$el.checked) {
+                                                        $$i < 0 &&
+                                                          _vm.$set(
+                                                            company,
+                                                            "cheked",
+                                                            $$a.concat([$$v])
+                                                          )
+                                                      } else {
+                                                        $$i > -1 &&
+                                                          _vm.$set(
+                                                            company,
+                                                            "cheked",
+                                                            $$a
+                                                              .slice(0, $$i)
+                                                              .concat(
+                                                                $$a.slice(
+                                                                  $$i + 1
+                                                                )
+                                                              )
+                                                          )
+                                                      }
+                                                    } else {
+                                                      _vm.$set(
+                                                        company,
+                                                        "cheked",
+                                                        $$c
+                                                      )
+                                                    }
+                                                  },
+                                                },
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass:
+                                                    "form-check-label",
+                                                  attrs: {
+                                                    for:
+                                                      "company_input" +
+                                                      company.id,
+                                                  },
+                                                },
+                                                [
+                                                  _c(
+                                                    "h6",
+                                                    { staticClass: "m-0 ms-1" },
+                                                    [
+                                                      _vm._v(
+                                                        " " +
+                                                          _vm._s(company.name)
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          company.rel_lines.length
+                                            ? _c(
+                                                "button",
+                                                {
+                                                  staticClass:
+                                                    "btn btn-secondary",
+                                                  attrs: {
+                                                    type: "button",
+                                                    "data-bs-toggle":
+                                                      "collapse",
+                                                    "data-bs-target":
+                                                      "#company_itembox" +
+                                                      company.id,
+                                                    "aria-expanded": "false",
+                                                    "aria-controls":
+                                                      "company_itembox" +
+                                                      company.id,
+                                                  },
+                                                },
+                                                [_vm._v("open")]
+                                              )
+                                            : _vm._e(),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "collapse",
+                                          attrs: {
+                                            id: "company_itembox" + company.id,
+                                          },
+                                        },
+                                        [
+                                          _c(
+                                            "ul",
+                                            { staticClass: "list-group m-3" },
+                                            _vm._l(
+                                              company.rel_lines,
+                                              function (line) {
+                                                return _c(
+                                                  "li",
+                                                  {
+                                                    key: line.id,
+                                                    staticClass:
+                                                      "list-group-item bg-light bg-white",
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "d-flex justify-content-between",
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "d-flex align-items-center",
+                                                          },
+                                                          [
+                                                            _c("input", {
+                                                              directives: [
+                                                                {
+                                                                  name: "model",
+                                                                  rawName:
+                                                                    "v-model",
+                                                                  value:
+                                                                    line.cheked,
+                                                                  expression:
+                                                                    "line.cheked",
+                                                                },
+                                                              ],
+                                                              staticClass:
+                                                                "form-check-input fs-5 m-0",
+                                                              attrs: {
+                                                                type: "checkbox",
+                                                                id:
+                                                                  "line_input" +
+                                                                  line.id,
+                                                              },
+                                                              domProps: {
+                                                                checked:
+                                                                  Array.isArray(
+                                                                    line.cheked
+                                                                  )
+                                                                    ? _vm._i(
+                                                                        line.cheked,
+                                                                        null
+                                                                      ) > -1
+                                                                    : line.cheked,
+                                                              },
+                                                              on: {
+                                                                change:
+                                                                  function (
+                                                                    $event
+                                                                  ) {
+                                                                    var $$a =
+                                                                        line.cheked,
+                                                                      $$el =
+                                                                        $event.target,
+                                                                      $$c =
+                                                                        $$el.checked
+                                                                          ? true
+                                                                          : false
+                                                                    if (
+                                                                      Array.isArray(
+                                                                        $$a
+                                                                      )
+                                                                    ) {
+                                                                      var $$v =
+                                                                          null,
+                                                                        $$i =
+                                                                          _vm._i(
+                                                                            $$a,
+                                                                            $$v
+                                                                          )
+                                                                      if (
+                                                                        $$el.checked
+                                                                      ) {
+                                                                        $$i <
+                                                                          0 &&
+                                                                          _vm.$set(
+                                                                            line,
+                                                                            "cheked",
+                                                                            $$a.concat(
+                                                                              [
+                                                                                $$v,
+                                                                              ]
+                                                                            )
+                                                                          )
+                                                                      } else {
+                                                                        $$i >
+                                                                          -1 &&
+                                                                          _vm.$set(
+                                                                            line,
+                                                                            "cheked",
+                                                                            $$a
+                                                                              .slice(
+                                                                                0,
+                                                                                $$i
+                                                                              )
+                                                                              .concat(
+                                                                                $$a.slice(
+                                                                                  $$i +
+                                                                                    1
+                                                                                )
+                                                                              )
+                                                                          )
+                                                                      }
+                                                                    } else {
+                                                                      _vm.$set(
+                                                                        line,
+                                                                        "cheked",
+                                                                        $$c
+                                                                      )
+                                                                    }
+                                                                  },
+                                                              },
+                                                            }),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "label",
+                                                              {
+                                                                staticClass:
+                                                                  "form-check-label",
+                                                                attrs: {
+                                                                  for:
+                                                                    "line_input" +
+                                                                    line.id,
+                                                                },
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "h6",
+                                                                  {
+                                                                    staticClass:
+                                                                      "m-0 ms-1",
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      " " +
+                                                                        _vm._s(
+                                                                          line.name
+                                                                        )
+                                                                    ),
+                                                                  ]
+                                                                ),
+                                                              ]
+                                                            ),
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        line.rel_stations.length
+                                                          ? _c(
+                                                              "button",
+                                                              {
+                                                                staticClass:
+                                                                  "btn btn-secondary",
+                                                                attrs: {
+                                                                  type: "button",
+                                                                  "data-bs-toggle":
+                                                                    "collapse",
+                                                                  "data-bs-target":
+                                                                    "#line_itembox" +
+                                                                    line.id,
+                                                                  "aria-expanded":
+                                                                    "false",
+                                                                  "aria-controls":
+                                                                    "line_itembox" +
+                                                                    line.id,
+                                                                },
+                                                              },
+                                                              [_vm._v("open")]
+                                                            )
+                                                          : _vm._e(),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass: "collapse",
+                                                        attrs: {
+                                                          id:
+                                                            "line_itembox" +
+                                                            line.id,
+                                                        },
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "d-flex flex-wrap",
+                                                          },
+                                                          _vm._l(
+                                                            line.rel_stations,
+                                                            function (station) {
+                                                              return _c(
+                                                                "div",
+                                                                {
+                                                                  key: station.id,
+                                                                  staticStyle: {
+                                                                    width:
+                                                                      "8em",
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _c("input", {
+                                                                    directives:
+                                                                      [
+                                                                        {
+                                                                          name: "model",
+                                                                          rawName:
+                                                                            "v-model",
+                                                                          value:
+                                                                            station.cheked,
+                                                                          expression:
+                                                                            "station.cheked",
+                                                                        },
+                                                                      ],
+                                                                    staticClass:
+                                                                      "form-check-input",
+                                                                    attrs: {
+                                                                      type: "checkbox",
+                                                                      id:
+                                                                        "station_input" +
+                                                                        station.id,
+                                                                    },
+                                                                    domProps: {
+                                                                      checked:
+                                                                        Array.isArray(
+                                                                          station.cheked
+                                                                        )
+                                                                          ? _vm._i(
+                                                                              station.cheked,
+                                                                              null
+                                                                            ) >
+                                                                            -1
+                                                                          : station.cheked,
+                                                                    },
+                                                                    on: {
+                                                                      change:
+                                                                        function (
+                                                                          $event
+                                                                        ) {
+                                                                          var $$a =
+                                                                              station.cheked,
+                                                                            $$el =
+                                                                              $event.target,
+                                                                            $$c =
+                                                                              $$el.checked
+                                                                                ? true
+                                                                                : false
+                                                                          if (
+                                                                            Array.isArray(
+                                                                              $$a
+                                                                            )
+                                                                          ) {
+                                                                            var $$v =
+                                                                                null,
+                                                                              $$i =
+                                                                                _vm._i(
+                                                                                  $$a,
+                                                                                  $$v
+                                                                                )
+                                                                            if (
+                                                                              $$el.checked
+                                                                            ) {
+                                                                              $$i <
+                                                                                0 &&
+                                                                                _vm.$set(
+                                                                                  station,
+                                                                                  "cheked",
+                                                                                  $$a.concat(
+                                                                                    [
+                                                                                      $$v,
+                                                                                    ]
+                                                                                  )
+                                                                                )
+                                                                            } else {
+                                                                              $$i >
+                                                                                -1 &&
+                                                                                _vm.$set(
+                                                                                  station,
+                                                                                  "cheked",
+                                                                                  $$a
+                                                                                    .slice(
+                                                                                      0,
+                                                                                      $$i
+                                                                                    )
+                                                                                    .concat(
+                                                                                      $$a.slice(
+                                                                                        $$i +
+                                                                                          1
+                                                                                      )
+                                                                                    )
+                                                                                )
+                                                                            }
+                                                                          } else {
+                                                                            _vm.$set(
+                                                                              station,
+                                                                              "cheked",
+                                                                              $$c
+                                                                            )
+                                                                          }
+                                                                        },
+                                                                    },
+                                                                  }),
+                                                                  _vm._v(" "),
+                                                                  _c(
+                                                                    "label",
+                                                                    {
+                                                                      staticClass:
+                                                                        "form-check-label",
+                                                                      attrs: {
+                                                                        for:
+                                                                          "station_input" +
+                                                                          station.id,
+                                                                      },
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "\n                                                                " +
+                                                                          _vm._s(
+                                                                            station.name
+                                                                          ) +
+                                                                          "\n                                                            "
+                                                                      ),
+                                                                    ]
+                                                                  ),
+                                                                ]
+                                                              )
+                                                            }
+                                                          ),
+                                                          0
+                                                        ),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                )
+                                              }
+                                            ),
+                                            0
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  )
+                                }
+                              ),
+                              0
+                            ),
+                          ]
+                        ),
+                      ]
+                    )
+                  }),
+                  0
+                ),
+              ]
+            ),
+          ]
+        )
+      }),
+      0
+    ),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component"),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              ),
-            ]),
-          ]),
-        ]),
-      ]),
-    ])
+    return _c(
+      "label",
+      {
+        staticClass: "form-check-label",
+        attrs: { for: "train_location_input_all" },
+      },
+      [_c("h5", { staticClass: "m-0 ms-1" }, [_vm._v("全国")])]
+    )
   },
 ]
 render._withStripped = true

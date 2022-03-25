@@ -44,6 +44,32 @@ class WorkingConditionTrain02Line extends Model
 
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | ローカルスコープ
+    |--------------------------------------------------------------------------
+    */
+    # API用データ取得
+    public function scopeForApi($query, $company_id)
+    {
+        $lines = $query->where('company_id',$company_id)->get();
+        foreach ($lines as $line) {
+
+            $company = WorkingConditionTrain01Company::find($line->company_id);
+            // dd($company->todohuken_code);
+
+            // 駅テーブルとのリレーション
+            $line->rel_stations = WorkingConditionTrain03Station::
+            where('line_code', $line->code) //鉄道会社の指定
+            ->where('todohuken_code', $company->todohuken_code) //駅の都道府県の指定
+            ->get();
+
+            // $line->rel_stations =['name'=>$line->id];
+        }
+        return $lines;
+    }
+
+
 
 
     /*
@@ -52,14 +78,5 @@ class WorkingConditionTrain02Line extends Model
     |--------------------------------------------------------------------------
     */
 
-
-
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | ローカルスコープ
-    |--------------------------------------------------------------------------
-    */
 
 }

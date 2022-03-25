@@ -44,7 +44,7 @@ class WorkingConditionLocation01Redion extends Model
     | ローカルスコープ
     |--------------------------------------------------------------------------
     */
-    #  API用データ取得
+    # API用データ取得
     public function scopeForApi($query)
     {
         $radions = $query->get();
@@ -52,6 +52,18 @@ class WorkingConditionLocation01Redion extends Model
 
             //都道府県データとのリレーション
             $radion->rel_todohukens = WorkingConditionLocation02Todohuken::forApi($radion->id);
+        }
+        return $radions;
+    }
+
+    # API用データ取得 : 駅(路線)テーブルとのリレーション
+    public function scopeForTrainApi($query)
+    {
+        $radions = $query->get();
+        foreach ($radions as $radion) {
+
+            //都道府県データとのリレーション
+            $radion->rel_todohukens = WorkingConditionLocation02Todohuken::forTrainApi($radion->id);
         }
         return $radions;
     }

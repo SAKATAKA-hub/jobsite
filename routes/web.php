@@ -8,6 +8,22 @@ use App\Http\Controllers\WorkingConditionController; // Controller(勤務条件)
 
 /*
  * ===========================================
+ *  default
+ * ===========================================
+ */
+Route::get('/', function () {
+    // return view('welcome');
+    return redirect()->route('wc_list');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+/*
+ * ===========================================
  *  勤務条件 (WorkingConditionController)
  * ===========================================
  */
@@ -60,20 +76,6 @@ Route::get('/working_condition/other/update',[WorkingConditionController::class,
 
 
 
-
-
-/*
- * ===========================================
- *  default
- * ===========================================
- */
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 /*

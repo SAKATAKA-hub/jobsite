@@ -29,20 +29,11 @@ class WorkingConditionIndustry01Group extends Model
     | リレーション
     |--------------------------------------------------------------------------
     */
-    # 都道府県テーブルとのリレーション
+    # 業種アイテムテーブルとのリレーション
     public function items()
     {
         return $this->hasMany(WorkingConditionIndustry02Item::class,'group_id');
     }
-
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | アクセサー
-    |--------------------------------------------------------------------------
-    */
-
 
 
 
@@ -52,5 +43,21 @@ class WorkingConditionIndustry01Group extends Model
     | ローカルスコープ
     |--------------------------------------------------------------------------
     */
+    #  API用データ取得
+    public function scopeForApi($query)
+    {
+        $groups = $query->get();
+        foreach ($groups as $group) {
 
+            //業種アイテムテーブルとのリレーション
+            $group->rel_items = WorkingConditionIndustry02Item::where('group_id',$group->id)->get();
+        }
+        return $groups;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | アクセサー
+    |--------------------------------------------------------------------------
+    */
 }

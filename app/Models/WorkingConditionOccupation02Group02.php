@@ -29,7 +29,7 @@ class WorkingConditionOccupation02Group02 extends Model
     | リレーション
     |--------------------------------------------------------------------------
     */
-    # 都道府県テーブルとのリレーション
+    # 職種アイテムテーブルとのリレーション
     public function items()
     {
         return $this->hasMany(WorkingConditionOccupation03Item::class,'group02_id');
@@ -49,8 +49,8 @@ class WorkingConditionOccupation02Group02 extends Model
         $group02s = $query->where('group01_id',$group01_id)->get();
         foreach ($group02s as $group02) {
 
-            //都道府県データとのリレーション
-            $group02->rel_items = WorkingConditionOccupation03Item::where('group02_id',$group02->id)->get();;
+            //職種アイテムテーブルとのリレーション
+            $group02->rel_items = WorkingConditionOccupation03Item::where('group02_id',$group02->id)->get();
         }
         return $group02s;
     }
@@ -63,9 +63,5 @@ class WorkingConditionOccupation02Group02 extends Model
     | アクセサー
     |--------------------------------------------------------------------------
     */
-
-
-
-
 
 }

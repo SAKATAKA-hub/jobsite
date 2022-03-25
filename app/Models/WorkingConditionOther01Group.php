@@ -29,20 +29,11 @@ class WorkingConditionOther01Group extends Model
     | リレーション
     |--------------------------------------------------------------------------
     */
-    # 都道府県テーブルとのリレーション
+    # その他条件アイテムテーブルとのリレーション
     public function items()
     {
         return $this->hasMany(WorkingConditionOther02Item::class,'group_id');
     }
-
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | アクセサー
-    |--------------------------------------------------------------------------
-    */
-
 
 
 
@@ -52,5 +43,21 @@ class WorkingConditionOther01Group extends Model
     | ローカルスコープ
     |--------------------------------------------------------------------------
     */
+    # API用データ取得
+    public function scopeForApi($query)
+    {
+        $groups = $query->get();
+        foreach ($groups as $group) {
 
+            // その他条件アイテムテーブルとのリレーション
+            $group->rel_items = WorkingConditionOther02Item::where('group_id',$group->id)->get();
+        }
+        return $groups;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | アクセサー
+    |--------------------------------------------------------------------------
+    */
 }

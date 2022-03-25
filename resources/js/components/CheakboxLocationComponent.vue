@@ -8,7 +8,6 @@
             <!-- チェックボックス -->
             <input class="form-check-input fs-5 m-0" type="checkbox" v-model="location.cheked"
              @change="clickRadionsParent()" id="location_input_all"
-
             >
 
             <!-- ラベル -->

@@ -7,7 +7,11 @@
     <!-- token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- route -->
+    <meta name="wc_location_api" content="{{route('wc_location_api')}}">
+    <meta name="wc_occupation_api" content="{{route('wc_occupation_api')}}">
+    <meta name="wc_industry_api" content="{{route('wc_industry_api')}}">
     <meta name="wc_train_api" content="{{route('wc_train_api')}}">
+    <meta name="wc_other_api" content="{{route('wc_other_api')}}">
 
 
     <title>勤務条件リスト</title>
@@ -47,10 +51,7 @@
                         <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#locationModal">
                             モーダル
                         </button>
-                        {{-- <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#locationCsvModal">
-                            CSV更新
-                        </button> --}}
-                        <a class="btn btn-secondary" href="{{route('wc_location_update')}}">CSV更新</a>
+                        {{-- <a class="btn btn-secondary" href="{{route('wc_location_update')}}">CSV更新</a> --}}
                     </div>
                 </div>
 
@@ -68,7 +69,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                @include('working_condition.modals.location')
+                                <cheakbox-location-component></cheakbox-location-component>
                             </div>
                             <div class="modal-footer">
                                 <div class="w-100  text-center">
@@ -95,10 +96,7 @@
                         <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#occupationModal">
                             モーダル
                         </button>
-                        {{-- <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#occupationCsvModal">
-                            CSV更新
-                        </button> --}}
-                        <a class="btn btn-secondary" href="{{route('wc_occupation_update')}}">CSV更新</a>
+                        {{-- <a class="btn btn-secondary" href="{{route('wc_occupation_update')}}">CSV更新</a> --}}
                     </div>
                 </div>
 
@@ -116,7 +114,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                @include('working_condition.modals.occupation')
+                                <cheakbox-occupation-component></cheakbox-occupation-component>
                             </div>
                             <div class="modal-footer">
                                 <div class="w-100  text-center">
@@ -143,10 +141,7 @@
                         <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#industryModal">
                             モーダル
                         </button>
-                        {{-- <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#industryCsvModal">
-                            CSV更新
-                        </button> --}}
-                        <a class="btn btn-secondary" href="{{route('wc_industry_update')}}">CSV更新</a>
+                        {{-- <a class="btn btn-secondary" href="{{route('wc_industry_update')}}">CSV更新</a> --}}
                     </div>
                 </div>
 
@@ -164,7 +159,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                @include('working_condition.modals.industry')
+                                <cheakbox-industry-component></cheakbox-industry-component>
                             </div>
                             <div class="modal-footer">
                                 <div class="w-100  text-center">
@@ -191,10 +186,7 @@
                         <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#trainModal">
                             モーダル
                         </button>
-                        {{-- <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#trainCsvModal">
-                            CSV更新
-                        </button> --}}
-                        <a class="btn btn-secondary" href="{{route('wc_train_update')}}">CSV更新</a>
+                        {{-- <a class="btn btn-secondary" href="{{route('wc_train_update')}}">CSV更新</a> --}}
                     </div>
                 </div>
 
@@ -212,7 +204,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                @include('working_condition.modals.train')
+                                <cheakbox-train-component></cheakbox-train-component>
                             </div>
                             <div class="modal-footer">
                                 <div class="w-100  text-center">
@@ -239,10 +231,7 @@
                         <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#otherModal">
                             モーダル
                         </button>
-                        {{-- <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#otherCsvModal">
-                            CSV更新
-                        </button> --}}
-                        <a class="btn btn-secondary" href="{{route('wc_other_update')}}">CSV更新</a>
+                        {{-- <a class="btn btn-secondary" href="{{route('wc_other_update')}}">CSV更新</a> --}}
                     </div>
                 </div>
 
@@ -260,7 +249,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                @include('working_condition.modals.other')
+                                <cheakbox-other-component></cheakbox-other-component>
                             </div>
                             <div class="modal-footer">
                                 <div class="w-100  text-center">

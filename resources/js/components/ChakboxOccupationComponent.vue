@@ -2,8 +2,7 @@
     <div>
 
 
-        <div class="d-flex align-items-center mb-3" >
-            <!-- v-if="occupation.group01s.length" -->
+        <div class="d-flex align-items-center mb-3 " v-if="occupation.group01s.length" >
 
             <!-- チェックボックス -->
             <input class="form-check-input fs-5 m-0" type="checkbox"

@@ -66,11 +66,13 @@ class WorkingConditionController extends Controller
      * ----------------------------------------------------
      *  勤務条件API
      * ----------------------------------------------------
+     * @return Json
     */
     # 勤務地API(location_api)
     public function location_api()
     {
         return response()->json([
+            'location_api' => 'ok',
             'location_radions' => \App\Models\WorkingConditionLocation01Redion::forApi(),
         ]);
     }
@@ -78,9 +80,8 @@ class WorkingConditionController extends Controller
     # 職種API(occupation_api)
     public function occupation_api()
     {
-        $dd= \App\Models\WorkingConditionOccupation01Group01::forApi();
-        // dd( $dd[0]->rel_group02s[0]->rel_items[0] );
         return response()->json([
+            'occupation_api' => 'ok',
             'occupation_group01s' => \App\Models\WorkingConditionOccupation01Group01::forApi(),
         ]);
     }
@@ -88,24 +89,31 @@ class WorkingConditionController extends Controller
     # 業種API(industry_api)
     public function industry_api()
     {
-        // $dd= \App\Models\WorkingConditionLocation01Redion::all();
-        // dd( $dd[0] );
-        // return response()->json([
-        //     'industry' => \App\Models\WorkingConditionLocation01Redion::all(),
-        // ]);
+        return response()->json([
+            'industry_api' => 'ok',
+            'industry_groups' => \App\Models\WorkingConditionIndustry01Group::forApi(),
+        ]);
     }
-
-
-    # 職種API(occupation_api)
 
     # 駅API(train_api)
     public function train_api()
     {
+        return response()->json([
+            'train_api' => 'ok',
+            'location_radions' => \App\Models\WorkingConditionLocation01Redion::forTrainApi(),
+            // 'train_companys' => \App\Models\WorkingConditionTrain01Company::forApi('00'),
+        ]);
 
     }
 
     # その他条件API(other_api)
-
+    public function other_api()
+    {
+        return response()->json([
+            'other_api' => 'ok',
+            'other_groups' => \App\Models\WorkingConditionOther01Group::forApi(),
+        ]);
+    }
 
 
 

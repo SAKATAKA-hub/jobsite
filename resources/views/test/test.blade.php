@@ -33,10 +33,9 @@
         <h1 class="border-bottom mb-5">勤務条件リスト</h1>
 
         <div class="wc_list card p-3 mb-5">
-            {{-- <train-component></train-component> --}}
-            {{-- <cheakbox-location-component></cheakbox-location-component> --}}
             <h3> 職種入力モーダル</h3>
-            <cheakbox-occupation-component></cheakbox-occupation-component>
+            {{-- <cheakbox-occupation-component></cheakbox-occupation-component> --}}
+            <cheakbox-other-component></cheakbox-other-component>
         </div>
 
 
