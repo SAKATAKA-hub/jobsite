@@ -14,7 +14,7 @@
     <meta name="wc_other_api" content="{{route('wc_other_api')}}">
 
 
-    <title>勤務条件リスト</title>
+    <title>勤務条件検索(サンプル)</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
@@ -30,7 +30,7 @@
     <main id="app" class="m-3">
 
 
-        <h1 class="border-bottom mb-5">勤務条件リスト</h1>
+        <h1 class="border-bottom mb-5">勤務条件検索(サンプル)</h1>
 
 
         <ul class="wc_list list-group">
