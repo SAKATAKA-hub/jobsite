@@ -2,31 +2,12 @@
     <div>
 
 
-        <div class="d-flex align-items-center mb-3" v-if="other.groups.length">
-
-            <!-- チェックボックス -->
-            <input class="form-check-input fs-5 m-0" type="checkbox"
-             id="other_input_all"
-            >
-
-            <!-- ラベル -->
-            <label class="form-check-label" for="other_input_all">
-                <h5 class="m-0 ms-1">全ての職種</h5>
-            </label>
-        </div>
-
-
         <!-- グループ -->
         <ul class="list-group">
             <li class="list-group-item bg-light" v-for=" group in other. groups" :key=" group.id">
 
                 <div class="d-flex justify-content-between">
                     <div class="d-flex align-items-center">
-                        <!-- チェックボックス -->
-                        <input class="form-check-input fs-5 m-0" type="checkbox" v-model=" group.cheked"
-                         :id=" 'other_input'+  group.id "
-                        >
-
                         <!-- ラベル -->
                         <label class="form-check-label" :for=" 'other_input'+  group.id ">
                             <h5 class="m-0 ms-1">{{  group.name }}</h5>
@@ -49,11 +30,11 @@
                                 <div class="d-flex align-items-center">
                                     <!-- チェックボックス -->
                                     <input class="form-check-input fs-5 m-0" type="checkbox" v-model="item.cheked"
-                                     :id=" 'item_input'+ item.id "
+                                     :id=" 'other_item_input'+ item.id "
                                     >
 
                                     <!-- ラベル -->
-                                    <label class="form-check-label" :for=" 'item_input'+ item.id ">
+                                    <label class="form-check-label" :for=" 'other_item_input'+ item.id ">
                                         <h6 class="m-0 ms-1"> {{ item.name }}</h6>
                                     </label>
                                 </div>
@@ -96,9 +77,9 @@
             })
             .then(json => {
                 // JSONをdataにコピー
-                console.log(json);
+                // console.log(json);
                 this.other.groups = json.other_groups;
-                 console.log(this.other.groups);
+                //  console.log(this.other.groups);
             })
             .catch(error => {
                 alert('データの読み込みに失敗しました。');

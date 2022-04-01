@@ -32,6 +32,10 @@
 
         <h1 class="border-bottom mb-5">勤務条件検索(サンプル)</h1>
 
+        <div class="wc_list">
+            <cheakbox-occupation-component></cheakbox-occupation-component>
+        </div>
+
 
         <ul class="wc_list list-group">
 
@@ -254,7 +258,7 @@
                             <div class="modal-footer">
                                 <div class="w-100  text-center">
                                     <button class="btn btn-primary btn-lg w-100"  data-bs-dismiss="modal" aria-label="Close">
-                                        希望その他条件を保存
+                                        その他条件を保存
                                     </button>
                                 </div>
                             </div>
@@ -271,7 +275,5 @@
 
     </main>
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 </html>

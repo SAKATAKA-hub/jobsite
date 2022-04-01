@@ -11,7 +11,7 @@
 
             <!-- ラベル -->
             <label class="form-check-label" for="industry_input_all">
-                <h5 class="m-0 ms-1">全ての職種</h5>
+                <h5 class="m-0 ms-1">全ての業種</h5>
             </label>
         </div>
 
@@ -24,11 +24,11 @@
                     <div class="d-flex align-items-center">
                         <!-- チェックボックス -->
                         <input class="form-check-input fs-5 m-0" type="checkbox" v-model=" group.cheked"
-                         :id=" 'industry_input'+  group.id "
+                         :id=" 'industry_group_input'+  group.id "
                         >
 
                         <!-- ラベル -->
-                        <label class="form-check-label" :for=" 'industry_input'+  group.id ">
+                        <label class="form-check-label" :for=" 'industry_group_input'+  group.id ">
                             <h5 class="m-0 ms-1">{{  group.name }}</h5>
                         </label>
                     </div>
@@ -49,11 +49,11 @@
                                 <div class="d-flex align-items-center">
                                     <!-- チェックボックス -->
                                     <input class="form-check-input fs-5 m-0" type="checkbox" v-model="item.cheked"
-                                     :id=" 'item_input'+ item.id "
+                                     :id=" 'industry_item_input'+ item.id "
                                     >
 
                                     <!-- ラベル -->
-                                    <label class="form-check-label" :for=" 'item_input'+ item.id ">
+                                    <label class="form-check-label" :for=" 'industry_item_input'+ item.id ">
                                         <h6 class="m-0 ms-1"> {{ item.name }}</h6>
                                     </label>
                                 </div>
@@ -98,7 +98,7 @@
                 // JSONをdataにコピー
                 // console.log(json);
                 this.industry.groups = json.industry_groups;
-                console.log(this.industry.groups);
+                // console.log(this.industry.groups);
             })
             .catch(error => {
                 alert('データの読み込みに失敗しました。');

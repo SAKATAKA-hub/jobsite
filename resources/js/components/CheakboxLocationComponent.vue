@@ -168,7 +168,7 @@
                 // JSONをdataにコピー
                 // console.log(json.location_radions[0]);
                 this.location.radions = json.location_radions;
-                 console.log(this.location.radions);
+                //  console.log(this.location.radions);
             })
             .catch(error => {
                 alert('データの読み込みに失敗しました。');

@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
-
 use App\Http\Controllers\WorkingConditionController; // Controller(勤務条件)
 
 
@@ -12,8 +11,8 @@ use App\Http\Controllers\WorkingConditionController; // Controller(勤務条件)
  * ===========================================
  */
 Route::get('/', function () {
-    return view('welcome');
-    // return redirect()->route('wc_list');
+    // return view('welcome');
+    return redirect()->route('wc_list');
 });
 
 Auth::routes();
@@ -27,6 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
  *  勤務条件 (WorkingConditionController)
  * ===========================================
  */
+
 # 勤務条件一覧(list)
 Route::get('/working_condition/list',[WorkingConditionController::class,'list'])
 ->name('wc_list');
