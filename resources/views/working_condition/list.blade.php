@@ -33,8 +33,9 @@
         <h1 class="border-bottom mb-5">勤務条件検索(サンプル)</h1>
 
         <div class="wc_list">
-            <cheakbox-occupation-component></cheakbox-occupation-component>
+            {{-- <cheakbox-occupation-component></cheakbox-occupation-component> --}}
         </div>
+
 
 
         <ul class="wc_list list-group">

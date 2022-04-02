@@ -5384,6 +5384,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5509,13 +5532,17 @@ __webpack_require__.r(__webpack_exports__);
       occupation: {
         cheked: false,
         group01s: []
+      },
+      inputs: {
+        group01s: [],
+        group02s: [],
+        items: []
       }
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    // console.log(this.route.wc_occupation_api);
     fetch(this.route.wc_occupation_api).then(function (response) {
       if (!response.ok) {
         throw new Error();
@@ -5525,32 +5552,36 @@ __webpack_require__.r(__webpack_exports__);
     }).then(function (json) {
       // JSONをdataにコピー
       // console.log(json);
-      _this.occupation.group01s = json.occupation_group01s; // console.log(this.occupation.group01s);
+      _this.occupation.group01s = json.occupation_group01s; //オブジェクトに要素の追加(parent)
+
+      _this.addObjectElement(); // console.log(this.occupation);
+
     })["catch"](function (error) {
       alert('データの読み込みに失敗しました。');
     });
   },
   methods: {
     /**
+     * チェックボックスクリック時に実行されるメソッド
      *
-     *
+     * @param Object object
+     * @param String ob_name
     */
     changeCheckBox: function changeCheckBox(object, ob_name) {
-      /* A-0 occupationの子データのチェックを変更する関数 */
+      /* A-0(親->子) occupationの子データのチェックを変更する関数 */
       var changOccupationChildrenCheked = function changOccupationChildrenCheked(object) {
         // 子データグループ名
-        var children_name = 'group01s';
-        console.log(object[children_name]);
-        console.log(object); // 子データのチェックを変更
+        var children_name = 'group01s'; // 子データのチェックを変更
 
         for (var index = 0; index < object[children_name].length; index++) {
           var child = object[children_name][index];
           child.cheked = object.cheked; // 子孫データのチェックを変更
 
           changeGroup01ChildrenCheked(child);
-        }
+        } //チェックが入っている子供がいるかどうか(なし)
+
       };
-      /* A-1 group01の子データのチェックを変更する関数 */
+      /* A-1(親->子) group01の子データのチェックを変更する関数 */
 
 
       var changeGroup01ChildrenCheked = function changeGroup01ChildrenCheked(object) {
@@ -5562,9 +5593,12 @@ __webpack_require__.r(__webpack_exports__);
           child.cheked = object.cheked; // 子孫データのチェックを変更
 
           changeGroup02ChildrenCheked(child);
-        }
+        } //チェックが入っている子供がいるかどうか
+
+
+        object.have_cheked_children = object.cheked;
       };
-      /* A-2 group02の子データのチェックを変更する関数 */
+      /* A-2(親->子) group02の子データのチェックを変更する関数 */
       // object : チェックされたオブジェクト
 
 
@@ -5574,68 +5608,213 @@ __webpack_require__.r(__webpack_exports__);
 
         for (var index = 0; index < object[children_name].length; index++) {
           var child = object[children_name][index];
-          child.cheked = object.cheked;
-        } // 子孫データのチェックを変更
+          child.cheked = object.cheked; // 子孫データのチェックを変更(なし)
+        } //チェックが入っている子供がいるかどうか
+
+
+        object.have_cheked_children = object.cheked;
+      };
+      /* B-1(子->親) group01の親データのチェックを変更する関数 */
+      // object : チェックされたオブジェクト
+
+
+      var changeGroup01PalentCheked = function changeGroup01PalentCheked(object) {
+        var parent = object.parent;
+        var children = parent['group01s'];
+        parent.cheked = true; //親のチェック
+        // parent.have_cheked_children = false; //チェックが入っている子供がいるかどうか(なし)
+
+        for (var index = 0; index < children.length; index++) {
+          var child = children[index];
+          parent.cheked = !child.cheked ? false : parent.cheked; // parent.have_cheked_children = child.have_cheked_children ? true : parent.have_cheked_children;
+        } // 先祖データのチェックを変更(なし)
 
       };
-      /* B-1 group01の親データのチェックを変更する関数 */
-      // parent : 親オブジェクト
+      /* B-2(子->親) group02の親データのチェックを変更する関数 */
+      // object : チェックされたオブジェクト
 
 
-      var changeGroup01PalentCheked = function changeGroup01PalentCheked(occupation) {
-        var parent_cheked = true;
+      var changeGroup02PalentCheked = function changeGroup02PalentCheked(object) {
+        var parent = object.parent;
+        var children = parent['rel_group02s'];
+        parent.cheked = true; //親のチェック
 
-        for (var index = 0; index < occupation['group01s'].length; index++) {
-          var group01 = occupation['group01s'][index];
-          parent_cheked = !group01.cheked ? false : parent_cheked;
-        }
+        parent.have_cheked_children = false; //チェックが入っている子供がいるかどうか
 
-        occupation.cheked = parent_cheked;
-      };
-
-      var changeGroup02PalentCheked = function changeGroup02PalentCheked(occupation) {
-        console.log(parent);
-
-        for (var index = 0; index < occupation['group01s'].length; index++) {
-          var group01 = occupation['group01s'][index];
-          var parent_cheked = true;
-
-          for (var _index = 0; _index < group01['rel_group02s'].length; _index++) {
-            var group02 = group01['rel_group02s'][_index];
-            parent_cheked = !group02.cheked ? false : parent_cheked;
-          }
-
-          group01.cheked = parent_cheked;
+        for (var index = 0; index < children.length; index++) {
+          var child = children[index];
+          parent.cheked = !child.cheked ? false : parent.cheked;
+          parent.have_cheked_children = child.cheked ? true : child.have_cheked_children ? true : parent.have_cheked_children;
         } // 先祖データのチェックを変更
 
+
+        changeGroup01PalentCheked(parent);
       };
+      /* B-3(子->親) itemの親データのチェックを変更する関数 */
+      // object : チェックされたオブジェクト
+
+
+      var changeItemPalentCheked = function changeItemPalentCheked(object) {
+        var parent = object.parent;
+        var children = parent['rel_items'];
+        parent.cheked = true; //親のチェック
+
+        parent.have_cheked_children = false; //チェックが入っている子供がいるかどうか
+
+        for (var index = 0; index < children.length; index++) {
+          var child = children[index];
+          parent.cheked = !child.cheked ? false : parent.cheked;
+          parent.have_cheked_children = child.cheked ? true : parent.have_cheked_children;
+        } // console.log(parent.have_cheked_children);
+        // 先祖データのチェックを変更
+
+
+        changeGroup02PalentCheked(parent);
+      };
+      /* 分岐処理 */
+
 
       switch (ob_name) {
         case 'occupation':
-          changOccupationChildrenCheked(object);
+          changOccupationChildrenCheked(object); //(親->子)
+
           break;
         //
 
         case 'group01':
-          changeGroup01ChildrenCheked(object);
-          changeGroup01PalentCheked(this.occupation);
+          changeGroup01ChildrenCheked(object); //(親->子)
+
+          changeGroup01PalentCheked(object); //(子->親)
+
           break;
         //
 
         case 'group02':
-          changeGroup02ChildrenCheked(object); // changeGroup02PalentCheked(this.occupation);
+          changeGroup02ChildrenCheked(object); //(親->子)
+
+          changeGroup02PalentCheked(object); //(子->親)
 
           break;
         //
 
         case 'item':
+          changeItemPalentCheked(object); //(子->親)
+
           break;
         //
 
         default:
           break;
+        //
       }
-    }
+    },
+    //end changeCheckBox
+
+    /**
+     * 読込みオブジェクトに要素の追加(mountedで利用)
+     *
+     * parent 親オブジェクト参照要素の追加
+    */
+    addObjectElement: function addObjectElement() {
+      /* group01 */
+      var group01s = this.occupation.group01s;
+
+      for (var g1_i = 0; g1_i < group01s.length; g1_i++) {
+        var group01 = group01s[g1_i]; // 親オブジェクト参照要素の追加
+
+        group01['parent'] = this.occupation;
+        group01['have_cheked_children'] = false;
+        /* group02s */
+
+        var group02s = group01.rel_group02s;
+
+        for (var g2_i = 0; g2_i < group02s.length; g2_i++) {
+          var group02 = group02s[g2_i]; // 親オブジェクト参照要素の追加
+
+          group02['parent'] = group01;
+          group02['have_cheked_children'] = false;
+          /* items */
+
+          var items = group02.rel_items;
+
+          for (var itm_i = 0; itm_i < items.length; itm_i++) {
+            var item = items[itm_i]; // 親オブジェクト参照要素の追加
+
+            item['parent'] = group02;
+            item['have_cheked_children'] = false;
+          }
+        }
+      } // console.log(this.occupation.group01s[0].rel_group02s[0].rel_items[0]);
+
+    },
+    //end addObjectElement
+
+    /**
+     * 入力内容を元に戻す
+     *
+    */
+    returnInput: function returnInput() {},
+
+    /**
+     * 入力内容を確定する()
+     *
+    */
+    confirmInput: function confirmInput() {
+      var all_occupations = true; // inputsのリセット
+
+      this.inputs = {
+        group01s: [],
+        group02s: [],
+        items: []
+      };
+      /* group01 */
+
+      var group01s = this.occupation.group01s;
+
+      for (var g1_i = 0; g1_i < group01s.length; g1_i++) {
+        var group01 = group01s[g1_i]; // inputsに追加
+
+        if (group01.cheked) {
+          this.inputs['group01s'].push(group01.name);
+          continue;
+        }
+        /* group02s */
+
+
+        var group02s = group01.rel_group02s;
+
+        for (var g2_i = 0; g2_i < group02s.length; g2_i++) {
+          var group02 = group02s[g2_i]; // inputsに追加
+
+          if (group02.cheked) {
+            this.inputs['group02s'].push(group02.name);
+            continue;
+          }
+          /* items */
+
+
+          var items = group02.rel_items;
+
+          for (var itm_i = 0; itm_i < items.length; itm_i++) {
+            var item = items[itm_i]; // inputsに追加
+
+            if (item.cheked) {
+              this.inputs['items'].push(item.name);
+              continue;
+            }
+          }
+        }
+      } // 選択内容表示用テキスト
+      // const n = 15; //テキストの最大表示文字数
+
+
+      var array = [].concat(_toConsumableArray(this.inputs.group01s), _toConsumableArray(this.inputs.group02s), _toConsumableArray(this.inputs.items));
+      var text = array.join(' / '); // text = text.length > n ? text.substring(0,n-1) + ' ・・・' : text;
+
+      console.log(text);
+      console.log(this.inputs);
+    } //end confirmInput
+
   }
 });
 
@@ -29471,6 +29650,19 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c(
+      "button",
+      {
+        staticClass: "mb-3",
+        on: {
+          click: function ($event) {
+            return _vm.confirmInput()
+          },
+        },
+      },
+      [_vm._v("確定")]
+    ),
+    _vm._v(" "),
     _vm.occupation.group01s.length
       ? _c("div", { staticClass: "d-flex align-items-center mb-3 " }, [
           _c("input", {
@@ -29596,6 +29788,14 @@ var render = function () {
                     ]),
                   ]
                 ),
+                _vm._v(" "),
+                group01.have_cheked_children
+                  ? _c("span", { staticClass: "ms-1 badge bg-success" }, [
+                      _vm._v(
+                        "\n                        選択中\n                    "
+                      ),
+                    ])
+                  : _vm._e(),
               ]),
               _vm._v(" "),
               _c(
@@ -29714,6 +29914,18 @@ var render = function () {
                                     ]),
                                   ]
                                 ),
+                                _vm._v(" "),
+                                group02.have_cheked_children
+                                  ? _c(
+                                      "span",
+                                      { staticClass: "ms-1 badge bg-success" },
+                                      [
+                                        _vm._v(
+                                          "\n                                    選択中\n                                "
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
                               ]
                             ),
                             _vm._v(" "),
