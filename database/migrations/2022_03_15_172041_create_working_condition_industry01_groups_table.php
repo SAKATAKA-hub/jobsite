@@ -17,6 +17,7 @@ class CreateWorkingConditionIndustry01GroupsTable extends Migration
             $table->id();
             $table->string('name',100)->comment('グループ名');
             $table->boolean('checked')->default(0);
+            $table->boolean('checked_children')->default(0);
         });
     }
 

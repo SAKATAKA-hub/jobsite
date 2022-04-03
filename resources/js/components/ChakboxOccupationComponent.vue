@@ -6,7 +6,7 @@
 
         <div class="d-flex align-items-center mb-3 " v-if="occupation.group01s.length" >
             <!-- チェックボックス -->
-            <input class="form-check-input fs-5 m-0" type="checkbox" v-model="occupation.cheked"
+            <input class="form-check-input fs-5 m-0" type="checkbox" v-model="occupation.checked"
              id="occupation_input_all"
              @change="changeCheckBox(occupation,'occupation')"
             >
@@ -25,7 +25,7 @@
                 <div class="d-flex justify-content-between">
                     <div class="d-flex align-items-center">
                         <!-- チェックボックス -->
-                        <input class="form-check-input fs-5 m-0" type="checkbox" v-model=" group01.cheked"
+                        <input class="form-check-input fs-5 m-0" type="checkbox" v-model=" group01.checked"
                          :id=" 'occupation_input'+  group01.id "
                          @change="changeCheckBox(group01,'group01')"
                         >
@@ -36,7 +36,7 @@
                         </label>
 
                         <!-- バッジ -->
-                        <span class="ms-1 badge bg-success" v-if="group01.have_cheked_children">
+                        <span class="ms-1 badge bg-success" v-if="group01.checked_children">
                             選択中
                         </span>
                     </div>
@@ -58,7 +58,7 @@
 
                                 <div class="d-flex align-items-center">
                                     <!-- チェックボックス -->
-                                    <input class="form-check-input fs-5 m-0" type="checkbox" v-model="group02.cheked"
+                                    <input class="form-check-input fs-5 m-0" type="checkbox" v-model="group02.checked"
                                      :id=" 'occupation_group02_input'+ group02.id "
                                      @change="changeCheckBox(group02,'group02')"
                                     >
@@ -69,7 +69,7 @@
                                     </label>
 
                                     <!-- バッジ -->
-                                    <span class="ms-1 badge bg-success" v-if="group02.have_cheked_children">
+                                    <span class="ms-1 badge bg-success" v-if="group02.checked_children">
                                         選択中
                                     </span>
                                 </div>
@@ -90,7 +90,7 @@
 
                                             <div class="d-flex align-items-center">
                                                 <!-- チェックボックス -->
-                                                <input class="form-check-input fs-5 m-0" type="checkbox"  v-model="item.cheked"
+                                                <input class="form-check-input fs-5 m-0" type="checkbox"  v-model="item.checked"
                                                  :id=" 'occupation_item_input'+ item.id "
                                                  @change="changeCheckBox(item,'item')"
                                                 >
@@ -136,7 +136,7 @@
                 },
 
                 occupation: {
-                    cheked: false,
+                    checked: false,
                     group01s: [],
                 },
 
@@ -187,7 +187,7 @@
 
 
                 /* A-0(親->子) occupationの子データのチェックを変更する関数 */
-                const changOccupationChildrenCheked = function(object){
+                const changOccupationChildrenChecked = function(object){
 
                     // 子データグループ名
                     const children_name = 'group01s';
@@ -196,10 +196,10 @@
                     for (let index = 0; index < object[children_name].length; index++) {
                         const child = object[children_name][index];
 
-                        child.cheked = object.cheked;
+                        child.checked = object.checked;
 
                         // 子孫データのチェックを変更
-                        changeGroup01ChildrenCheked(child);
+                        changeGroup01ChildrenChecked(child);
                     }
 
                     //チェックが入っている子供がいるかどうか(なし)
@@ -207,7 +207,7 @@
 
 
                 /* A-1(親->子) group01の子データのチェックを変更する関数 */
-                const changeGroup01ChildrenCheked = function(object){
+                const changeGroup01ChildrenChecked = function(object){
 
                     // 子データグループ名
                     const children_name = 'rel_group02s';
@@ -216,20 +216,20 @@
                     for (let index = 0; index < object[children_name].length; index++) {
                         const child = object[children_name][index];
 
-                        child.cheked = object.cheked;
+                        child.checked = object.checked;
 
                         // 子孫データのチェックを変更
-                        changeGroup02ChildrenCheked(child);
+                        changeGroup02ChildrenChecked(child);
                     }
 
                     //チェックが入っている子供がいるかどうか
-                    object.have_cheked_children = object.cheked;
+                    object.checked_children = object.checked;
                 }
 
 
                 /* A-2(親->子) group02の子データのチェックを変更する関数 */
                 // object : チェックされたオブジェクト
-                const changeGroup02ChildrenCheked = function(object){
+                const changeGroup02ChildrenChecked = function(object){
 
                     // 子データグループ名
                     const children_name = 'rel_items';
@@ -238,13 +238,13 @@
                     for (let index = 0; index < object[children_name].length; index++) {
                         const child = object[children_name][index];
 
-                        child.cheked = object.cheked;
+                        child.checked = object.checked;
 
                         // 子孫データのチェックを変更(なし)
                     }
 
                     //チェックが入っている子供がいるかどうか
-                    object.have_cheked_children = object.cheked;
+                    object.checked_children = object.checked;
                 }
 
 
@@ -252,17 +252,17 @@
 
                 /* B-1(子->親) group01の親データのチェックを変更する関数 */
                 // object : チェックされたオブジェクト
-                const changeGroup01PalentCheked = function(object){
+                const changeGroup01PalentChecked = function(object){
                     const parent = object.parent;
                     const children = parent['group01s'];
 
-                    parent.cheked = true; //親のチェック
-                    // parent.have_cheked_children = false; //チェックが入っている子供がいるかどうか(なし)
+                    parent.checked = true; //親のチェック
+                    // parent.checked_children = false; //チェックが入っている子供がいるかどうか(なし)
                     for (let index = 0; index < children.length; index++) {
                         const child = children[index];
 
-                        parent.cheked = ! child.cheked ? false : parent.cheked ;
-                        // parent.have_cheked_children = child.have_cheked_children ? true : parent.have_cheked_children;
+                        parent.checked = ! child.checked ? false : parent.checked ;
+                        // parent.checked_children = child.checked_children ? true : parent.checked_children;
                     }
 
                     // 先祖データのチェックを変更(なし)
@@ -271,42 +271,42 @@
 
                 /* B-2(子->親) group02の親データのチェックを変更する関数 */
                 // object : チェックされたオブジェクト
-                const changeGroup02PalentCheked = function(object){
+                const changeGroup02PalentChecked = function(object){
                     const parent = object.parent;
                     const children = parent['rel_group02s'];
 
-                    parent.cheked = true; //親のチェック
-                    parent.have_cheked_children = false; //チェックが入っている子供がいるかどうか
+                    parent.checked = true; //親のチェック
+                    parent.checked_children = false; //チェックが入っている子供がいるかどうか
                     for (let index = 0; index < children.length; index++) {
                         const child = children[index];
 
-                        parent.cheked = ! child.cheked ? false : parent.cheked ;
-                        parent.have_cheked_children = child.cheked ? true : ( child.have_cheked_children ? true : parent.have_cheked_children );
+                        parent.checked = ! child.checked ? false : parent.checked ;
+                        parent.checked_children = child.checked ? true : ( child.checked_children ? true : parent.checked_children );
                     }
 
                     // 先祖データのチェックを変更
-                    changeGroup01PalentCheked(parent);
+                    changeGroup01PalentChecked(parent);
                 }
 
 
                 /* B-3(子->親) itemの親データのチェックを変更する関数 */
                 // object : チェックされたオブジェクト
-                const changeItemPalentCheked = function(object){
+                const changeItemPalentChecked = function(object){
                     const parent = object.parent;
                     const children = parent['rel_items'];
 
-                    parent.cheked = true; //親のチェック
-                    parent.have_cheked_children = false; //チェックが入っている子供がいるかどうか
+                    parent.checked = true; //親のチェック
+                    parent.checked_children = false; //チェックが入っている子供がいるかどうか
                     for (let index = 0; index < children.length; index++) {
                         const child = children[index];
 
-                        parent.cheked = ! child.cheked ? false : parent.cheked ;
-                        parent.have_cheked_children = child.cheked ? true : parent.have_cheked_children;
+                        parent.checked = ! child.checked ? false : parent.checked ;
+                        parent.checked_children = child.checked ? true : parent.checked_children;
                     }
-                    // console.log(parent.have_cheked_children);
+                    // console.log(parent.checked_children);
 
                     // 先祖データのチェックを変更
-                    changeGroup02PalentCheked(parent);
+                    changeGroup02PalentChecked(parent);
                 }
 
 
@@ -315,21 +315,21 @@
                 /* 分岐処理 */
                 switch (ob_name) {
                     case 'occupation':
-                        changOccupationChildrenCheked(object);//(親->子)
+                        changOccupationChildrenChecked(object);//(親->子)
                         break;
                     //
                     case 'group01':
-                        changeGroup01ChildrenCheked(object);//(親->子)
-                        changeGroup01PalentCheked(object);//(子->親)
+                        changeGroup01ChildrenChecked(object);//(親->子)
+                        changeGroup01PalentChecked(object);//(子->親)
                         break;
                     //
                     case 'group02':
-                        changeGroup02ChildrenCheked(object);//(親->子)
-                        changeGroup02PalentCheked(object);//(子->親)
+                        changeGroup02ChildrenChecked(object);//(親->子)
+                        changeGroup02PalentChecked(object);//(子->親)
                         break;
                     //
                     case 'item':
-                        changeItemPalentCheked(object);//(子->親)
+                        changeItemPalentChecked(object);//(子->親)
                         break;
                     //
                     default:
@@ -356,9 +356,6 @@
                     // 親オブジェクト参照要素の追加
                     group01['parent'] = this.occupation;
 
-                    group01['have_cheked_children'] = false;
-
-
 
                     /* group02s */
                     const group02s = group01.rel_group02s;
@@ -368,9 +365,6 @@
                         // 親オブジェクト参照要素の追加
                         group02['parent'] = group01;
 
-                        group02['have_cheked_children'] = false;
-
-
 
                         /* items */
                         const items = group02.rel_items;
@@ -379,9 +373,6 @@
 
                             // 親オブジェクト参照要素の追加
                             item['parent'] = group02;
-
-                            item['have_cheked_children'] = false;
-
                         }
                     }
                 }
@@ -401,7 +392,6 @@
              *
             */
             confirmInput: function(){
-                let all_occupations = true;
 
                 // inputsのリセット
                 this.inputs = { group01s:[], group02s: [], items: [], };
@@ -413,7 +403,7 @@
                     const group01 =  group01s[g1_i];
 
                     // inputsに追加
-                    if( group01.cheked ){
+                    if( group01.checked ){
                         this.inputs['group01s'].push(group01.name);
                         continue;
                     }
@@ -425,7 +415,7 @@
                         const group02 = group02s[g2_i];
 
                         // inputsに追加
-                        if( group02.cheked ){
+                        if( group02.checked ){
                             this.inputs['group02s'].push(group02.name);
                             continue;
                         }
@@ -438,7 +428,7 @@
                             const item = items[itm_i];
 
                             // inputsに追加
-                            if( item.cheked ){
+                            if( item.checked ){
                                 this.inputs['items'].push(item.name);
                                 continue;
                             }

@@ -15,8 +15,9 @@ class CreateWorkingConditionOccupation01Group01sTable extends Migration
     {
         Schema::create('working_condition_occupation01_group01s', function (Blueprint $table) {
             $table->id();
-            $table->string('name',100)->comment('グループ名01');
+            $table->string('name',100)->comment('グループ01名');
             $table->boolean('checked')->default(0);
+            $table->boolean('checked_children')->default(0);
         });
     }
 

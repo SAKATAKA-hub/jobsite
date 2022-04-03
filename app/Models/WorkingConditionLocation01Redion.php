@@ -19,7 +19,7 @@ class WorkingConditionLocation01Redion extends Model
     */
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['name','checked'];
+    protected $fillable = ['name','checked','checked_children'];
 
 
 

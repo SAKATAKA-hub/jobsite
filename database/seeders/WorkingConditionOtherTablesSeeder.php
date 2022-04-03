@@ -47,6 +47,7 @@ class WorkingConditionOtherTablesSeeder extends Seeder
             {
                 $group = new \App\Models\WorkingConditionOther01Group([
                     'name' => $data['group'],
+                    'form_name' => $data['form_name'],
                 ]);
                 $group->save();
             }

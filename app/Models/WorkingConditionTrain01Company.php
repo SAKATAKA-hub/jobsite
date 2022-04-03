@@ -19,7 +19,7 @@ class WorkingConditionTrain01Company extends Model
     */
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['name','code','todohuken_code','checked'];
+    protected $fillable = ['name','code','todohuken_code','checked','checked_children',];
 
 
 

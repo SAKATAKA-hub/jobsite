@@ -19,6 +19,7 @@ class CreateWorkingConditionTrain02LinesTable extends Migration
             $table->string('code',10)->comment('路線コード');
             $table->unsignedBigInteger('company_id')->comment('鉄道会社ID');
             $table->boolean('checked')->default(0);
+            $table->boolean('checked_children')->default(0);
 
             $table->foreign('company_id')
             ->references('id')->on('working_condition_train01_companies')

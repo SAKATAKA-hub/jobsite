@@ -19,7 +19,7 @@ class WorkingConditionLocation02Todohuken extends Model
     */
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['name','code','radion_id','checked',];
+    protected $fillable = ['name','code','radion_id','checked','checked_children',];
 
 
 

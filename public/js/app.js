@@ -5530,7 +5530,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         wc_occupation_api: document.querySelector('meta[name="wc_occupation_api"]').content
       },
       occupation: {
-        cheked: false,
+        checked: false,
         group01s: []
       },
       inputs: {
@@ -5569,64 +5569,64 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     */
     changeCheckBox: function changeCheckBox(object, ob_name) {
       /* A-0(親->子) occupationの子データのチェックを変更する関数 */
-      var changOccupationChildrenCheked = function changOccupationChildrenCheked(object) {
+      var changOccupationChildrenChecked = function changOccupationChildrenChecked(object) {
         // 子データグループ名
         var children_name = 'group01s'; // 子データのチェックを変更
 
         for (var index = 0; index < object[children_name].length; index++) {
           var child = object[children_name][index];
-          child.cheked = object.cheked; // 子孫データのチェックを変更
+          child.checked = object.checked; // 子孫データのチェックを変更
 
-          changeGroup01ChildrenCheked(child);
+          changeGroup01ChildrenChecked(child);
         } //チェックが入っている子供がいるかどうか(なし)
 
       };
       /* A-1(親->子) group01の子データのチェックを変更する関数 */
 
 
-      var changeGroup01ChildrenCheked = function changeGroup01ChildrenCheked(object) {
+      var changeGroup01ChildrenChecked = function changeGroup01ChildrenChecked(object) {
         // 子データグループ名
         var children_name = 'rel_group02s'; // 子データのチェックを変更
 
         for (var index = 0; index < object[children_name].length; index++) {
           var child = object[children_name][index];
-          child.cheked = object.cheked; // 子孫データのチェックを変更
+          child.checked = object.checked; // 子孫データのチェックを変更
 
-          changeGroup02ChildrenCheked(child);
+          changeGroup02ChildrenChecked(child);
         } //チェックが入っている子供がいるかどうか
 
 
-        object.have_cheked_children = object.cheked;
+        object.checked_children = object.checked;
       };
       /* A-2(親->子) group02の子データのチェックを変更する関数 */
       // object : チェックされたオブジェクト
 
 
-      var changeGroup02ChildrenCheked = function changeGroup02ChildrenCheked(object) {
+      var changeGroup02ChildrenChecked = function changeGroup02ChildrenChecked(object) {
         // 子データグループ名
         var children_name = 'rel_items'; // 子データのチェックを変更
 
         for (var index = 0; index < object[children_name].length; index++) {
           var child = object[children_name][index];
-          child.cheked = object.cheked; // 子孫データのチェックを変更(なし)
+          child.checked = object.checked; // 子孫データのチェックを変更(なし)
         } //チェックが入っている子供がいるかどうか
 
 
-        object.have_cheked_children = object.cheked;
+        object.checked_children = object.checked;
       };
       /* B-1(子->親) group01の親データのチェックを変更する関数 */
       // object : チェックされたオブジェクト
 
 
-      var changeGroup01PalentCheked = function changeGroup01PalentCheked(object) {
+      var changeGroup01PalentChecked = function changeGroup01PalentChecked(object) {
         var parent = object.parent;
         var children = parent['group01s'];
-        parent.cheked = true; //親のチェック
-        // parent.have_cheked_children = false; //チェックが入っている子供がいるかどうか(なし)
+        parent.checked = true; //親のチェック
+        // parent.checked_children = false; //チェックが入っている子供がいるかどうか(なし)
 
         for (var index = 0; index < children.length; index++) {
           var child = children[index];
-          parent.cheked = !child.cheked ? false : parent.cheked; // parent.have_cheked_children = child.have_cheked_children ? true : parent.have_cheked_children;
+          parent.checked = !child.checked ? false : parent.checked; // parent.checked_children = child.checked_children ? true : parent.checked_children;
         } // 先祖データのチェックを変更(なし)
 
       };
@@ -5634,71 +5634,71 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       // object : チェックされたオブジェクト
 
 
-      var changeGroup02PalentCheked = function changeGroup02PalentCheked(object) {
+      var changeGroup02PalentChecked = function changeGroup02PalentChecked(object) {
         var parent = object.parent;
         var children = parent['rel_group02s'];
-        parent.cheked = true; //親のチェック
+        parent.checked = true; //親のチェック
 
-        parent.have_cheked_children = false; //チェックが入っている子供がいるかどうか
+        parent.checked_children = false; //チェックが入っている子供がいるかどうか
 
         for (var index = 0; index < children.length; index++) {
           var child = children[index];
-          parent.cheked = !child.cheked ? false : parent.cheked;
-          parent.have_cheked_children = child.cheked ? true : child.have_cheked_children ? true : parent.have_cheked_children;
+          parent.checked = !child.checked ? false : parent.checked;
+          parent.checked_children = child.checked ? true : child.checked_children ? true : parent.checked_children;
         } // 先祖データのチェックを変更
 
 
-        changeGroup01PalentCheked(parent);
+        changeGroup01PalentChecked(parent);
       };
       /* B-3(子->親) itemの親データのチェックを変更する関数 */
       // object : チェックされたオブジェクト
 
 
-      var changeItemPalentCheked = function changeItemPalentCheked(object) {
+      var changeItemPalentChecked = function changeItemPalentChecked(object) {
         var parent = object.parent;
         var children = parent['rel_items'];
-        parent.cheked = true; //親のチェック
+        parent.checked = true; //親のチェック
 
-        parent.have_cheked_children = false; //チェックが入っている子供がいるかどうか
+        parent.checked_children = false; //チェックが入っている子供がいるかどうか
 
         for (var index = 0; index < children.length; index++) {
           var child = children[index];
-          parent.cheked = !child.cheked ? false : parent.cheked;
-          parent.have_cheked_children = child.cheked ? true : parent.have_cheked_children;
-        } // console.log(parent.have_cheked_children);
+          parent.checked = !child.checked ? false : parent.checked;
+          parent.checked_children = child.checked ? true : parent.checked_children;
+        } // console.log(parent.checked_children);
         // 先祖データのチェックを変更
 
 
-        changeGroup02PalentCheked(parent);
+        changeGroup02PalentChecked(parent);
       };
       /* 分岐処理 */
 
 
       switch (ob_name) {
         case 'occupation':
-          changOccupationChildrenCheked(object); //(親->子)
+          changOccupationChildrenChecked(object); //(親->子)
 
           break;
         //
 
         case 'group01':
-          changeGroup01ChildrenCheked(object); //(親->子)
+          changeGroup01ChildrenChecked(object); //(親->子)
 
-          changeGroup01PalentCheked(object); //(子->親)
+          changeGroup01PalentChecked(object); //(子->親)
 
           break;
         //
 
         case 'group02':
-          changeGroup02ChildrenCheked(object); //(親->子)
+          changeGroup02ChildrenChecked(object); //(親->子)
 
-          changeGroup02PalentCheked(object); //(子->親)
+          changeGroup02PalentChecked(object); //(子->親)
 
           break;
         //
 
         case 'item':
-          changeItemPalentCheked(object); //(子->親)
+          changeItemPalentChecked(object); //(子->親)
 
           break;
         //
@@ -5723,7 +5723,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var group01 = group01s[g1_i]; // 親オブジェクト参照要素の追加
 
         group01['parent'] = this.occupation;
-        group01['have_cheked_children'] = false;
         /* group02s */
 
         var group02s = group01.rel_group02s;
@@ -5732,7 +5731,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           var group02 = group02s[g2_i]; // 親オブジェクト参照要素の追加
 
           group02['parent'] = group01;
-          group02['have_cheked_children'] = false;
           /* items */
 
           var items = group02.rel_items;
@@ -5741,7 +5739,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             var item = items[itm_i]; // 親オブジェクト参照要素の追加
 
             item['parent'] = group02;
-            item['have_cheked_children'] = false;
           }
         }
       } // console.log(this.occupation.group01s[0].rel_group02s[0].rel_items[0]);
@@ -5760,8 +5757,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
      *
     */
     confirmInput: function confirmInput() {
-      var all_occupations = true; // inputsのリセット
-
+      // inputsのリセット
       this.inputs = {
         group01s: [],
         group02s: [],
@@ -5774,7 +5770,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       for (var g1_i = 0; g1_i < group01s.length; g1_i++) {
         var group01 = group01s[g1_i]; // inputsに追加
 
-        if (group01.cheked) {
+        if (group01.checked) {
           this.inputs['group01s'].push(group01.name);
           continue;
         }
@@ -5786,7 +5782,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         for (var g2_i = 0; g2_i < group02s.length; g2_i++) {
           var group02 = group02s[g2_i]; // inputsに追加
 
-          if (group02.cheked) {
+          if (group02.checked) {
             this.inputs['group02s'].push(group02.name);
             continue;
           }
@@ -5798,7 +5794,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           for (var itm_i = 0; itm_i < items.length; itm_i++) {
             var item = items[itm_i]; // inputsに追加
 
-            if (item.cheked) {
+            if (item.checked) {
               this.inputs['items'].push(item.name);
               continue;
             }
@@ -29670,21 +29666,21 @@ var render = function () {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.occupation.cheked,
-                expression: "occupation.cheked",
+                value: _vm.occupation.checked,
+                expression: "occupation.checked",
               },
             ],
             staticClass: "form-check-input fs-5 m-0",
             attrs: { type: "checkbox", id: "occupation_input_all" },
             domProps: {
-              checked: Array.isArray(_vm.occupation.cheked)
-                ? _vm._i(_vm.occupation.cheked, null) > -1
-                : _vm.occupation.cheked,
+              checked: Array.isArray(_vm.occupation.checked)
+                ? _vm._i(_vm.occupation.checked, null) > -1
+                : _vm.occupation.checked,
             },
             on: {
               change: [
                 function ($event) {
-                  var $$a = _vm.occupation.cheked,
+                  var $$a = _vm.occupation.checked,
                     $$el = $event.target,
                     $$c = $$el.checked ? true : false
                   if (Array.isArray($$a)) {
@@ -29692,17 +29688,17 @@ var render = function () {
                       $$i = _vm._i($$a, $$v)
                     if ($$el.checked) {
                       $$i < 0 &&
-                        _vm.$set(_vm.occupation, "cheked", $$a.concat([$$v]))
+                        _vm.$set(_vm.occupation, "checked", $$a.concat([$$v]))
                     } else {
                       $$i > -1 &&
                         _vm.$set(
                           _vm.occupation,
-                          "cheked",
+                          "checked",
                           $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                         )
                     }
                   } else {
-                    _vm.$set(_vm.occupation, "cheked", $$c)
+                    _vm.$set(_vm.occupation, "checked", $$c)
                   }
                 },
                 function ($event) {
@@ -29731,8 +29727,8 @@ var render = function () {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: group01.cheked,
-                      expression: " group01.cheked",
+                      value: group01.checked,
+                      expression: " group01.checked",
                     },
                   ],
                   staticClass: "form-check-input fs-5 m-0",
@@ -29741,14 +29737,14 @@ var render = function () {
                     id: "occupation_input" + group01.id,
                   },
                   domProps: {
-                    checked: Array.isArray(group01.cheked)
-                      ? _vm._i(group01.cheked, null) > -1
-                      : group01.cheked,
+                    checked: Array.isArray(group01.checked)
+                      ? _vm._i(group01.checked, null) > -1
+                      : group01.checked,
                   },
                   on: {
                     change: [
                       function ($event) {
-                        var $$a = group01.cheked,
+                        var $$a = group01.checked,
                           $$el = $event.target,
                           $$c = $$el.checked ? true : false
                         if (Array.isArray($$a)) {
@@ -29756,17 +29752,17 @@ var render = function () {
                             $$i = _vm._i($$a, $$v)
                           if ($$el.checked) {
                             $$i < 0 &&
-                              _vm.$set(group01, "cheked", $$a.concat([$$v]))
+                              _vm.$set(group01, "checked", $$a.concat([$$v]))
                           } else {
                             $$i > -1 &&
                               _vm.$set(
                                 group01,
-                                "cheked",
+                                "checked",
                                 $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                               )
                           }
                         } else {
-                          _vm.$set(group01, "cheked", $$c)
+                          _vm.$set(group01, "checked", $$c)
                         }
                       },
                       function ($event) {
@@ -29789,7 +29785,7 @@ var render = function () {
                   ]
                 ),
                 _vm._v(" "),
-                group01.have_cheked_children
+                group01.checked_children
                   ? _c("span", { staticClass: "ms-1 badge bg-success" }, [
                       _vm._v(
                         "\n                        選択中\n                    "
@@ -29845,8 +29841,8 @@ var render = function () {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: group02.cheked,
-                                      expression: "group02.cheked",
+                                      value: group02.checked,
+                                      expression: "group02.checked",
                                     },
                                   ],
                                   staticClass: "form-check-input fs-5 m-0",
@@ -29855,14 +29851,14 @@ var render = function () {
                                     id: "occupation_group02_input" + group02.id,
                                   },
                                   domProps: {
-                                    checked: Array.isArray(group02.cheked)
-                                      ? _vm._i(group02.cheked, null) > -1
-                                      : group02.cheked,
+                                    checked: Array.isArray(group02.checked)
+                                      ? _vm._i(group02.checked, null) > -1
+                                      : group02.checked,
                                   },
                                   on: {
                                     change: [
                                       function ($event) {
-                                        var $$a = group02.cheked,
+                                        var $$a = group02.checked,
                                           $$el = $event.target,
                                           $$c = $$el.checked ? true : false
                                         if (Array.isArray($$a)) {
@@ -29872,21 +29868,21 @@ var render = function () {
                                             $$i < 0 &&
                                               _vm.$set(
                                                 group02,
-                                                "cheked",
+                                                "checked",
                                                 $$a.concat([$$v])
                                               )
                                           } else {
                                             $$i > -1 &&
                                               _vm.$set(
                                                 group02,
-                                                "cheked",
+                                                "checked",
                                                 $$a
                                                   .slice(0, $$i)
                                                   .concat($$a.slice($$i + 1))
                                               )
                                           }
                                         } else {
-                                          _vm.$set(group02, "cheked", $$c)
+                                          _vm.$set(group02, "checked", $$c)
                                         }
                                       },
                                       function ($event) {
@@ -29915,7 +29911,7 @@ var render = function () {
                                   ]
                                 ),
                                 _vm._v(" "),
-                                group02.have_cheked_children
+                                group02.checked_children
                                   ? _c(
                                       "span",
                                       { staticClass: "ms-1 badge bg-success" },
@@ -29988,8 +29984,8 @@ var render = function () {
                                                 {
                                                   name: "model",
                                                   rawName: "v-model",
-                                                  value: item.cheked,
-                                                  expression: "item.cheked",
+                                                  value: item.checked,
+                                                  expression: "item.checked",
                                                 },
                                               ],
                                               staticClass:
@@ -30002,16 +29998,16 @@ var render = function () {
                                               },
                                               domProps: {
                                                 checked: Array.isArray(
-                                                  item.cheked
+                                                  item.checked
                                                 )
-                                                  ? _vm._i(item.cheked, null) >
+                                                  ? _vm._i(item.checked, null) >
                                                     -1
-                                                  : item.cheked,
+                                                  : item.checked,
                                               },
                                               on: {
                                                 change: [
                                                   function ($event) {
-                                                    var $$a = item.cheked,
+                                                    var $$a = item.checked,
                                                       $$el = $event.target,
                                                       $$c = $$el.checked
                                                         ? true
@@ -30023,14 +30019,14 @@ var render = function () {
                                                         $$i < 0 &&
                                                           _vm.$set(
                                                             item,
-                                                            "cheked",
+                                                            "checked",
                                                             $$a.concat([$$v])
                                                           )
                                                       } else {
                                                         $$i > -1 &&
                                                           _vm.$set(
                                                             item,
-                                                            "cheked",
+                                                            "checked",
                                                             $$a
                                                               .slice(0, $$i)
                                                               .concat(
@@ -30043,7 +30039,7 @@ var render = function () {
                                                     } else {
                                                       _vm.$set(
                                                         item,
-                                                        "cheked",
+                                                        "checked",
                                                         $$c
                                                       )
                                                     }

@@ -19,6 +19,7 @@ class CreateWorkingConditionLocation03ShichosonsTable extends Migration
             $table->string('code',10)->comment('市区町村コード');
             $table->unsignedBigInteger('todohuken_id')->comment('都道府県ID');
             $table->boolean('checked')->default(0);
+            $table->boolean('checked_children')->default(0);
 
             $table->foreign('todohuken_id')
             ->references('id')->on('working_condition_location02_todohukens')

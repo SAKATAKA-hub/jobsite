@@ -19,7 +19,7 @@ class WorkingConditionOccupation02Group02 extends Model
     */
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['name','group01_id','checked'];
+    protected $fillable = ['name','group01_id','checked','checked_children',];
 
 
 

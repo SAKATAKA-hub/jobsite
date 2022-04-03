@@ -19,7 +19,7 @@ class WorkingConditionTrain02Line extends Model
     */
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['name','code','company_id','checked'];
+    protected $fillable = ['name','code','company_id','checked','checked_children',];
 
 
 

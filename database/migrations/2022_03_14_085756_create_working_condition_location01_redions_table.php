@@ -17,6 +17,7 @@ class CreateWorkingConditionLocation01RedionsTable extends Migration
             $table->id();
             $table->string('name',10)->comment('地域名');
             $table->boolean('checked')->default(0);
+            $table->boolean('checked_children')->default(0);
         });
     }
 

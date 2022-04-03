@@ -19,6 +19,7 @@ class CreateWorkingConditionLocation02TodohukensTable extends Migration
             $table->string('code',10)->comment('都道府県コード');
             $table->unsignedBigInteger('radion_id')->comment('地域ID');
             $table->boolean('checked')->default(0);
+            $table->boolean('checked_children')->default(0);
 
             $table->foreign('radion_id')
             ->references('id')->on('working_condition_location01_redions')

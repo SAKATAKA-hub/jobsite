@@ -19,7 +19,7 @@ class WorkingConditionOther01Group extends Model
     */
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['name','checked'];
+    protected $fillable = ['name','form_name','checked',];
 
 
 

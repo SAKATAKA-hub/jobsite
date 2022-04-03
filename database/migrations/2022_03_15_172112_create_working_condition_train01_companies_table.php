@@ -19,6 +19,7 @@ class CreateWorkingConditionTrain01CompaniesTable extends Migration
             $table->integer('code')->comment('鉄道会社コード');
             $table->string('todohuken_code',10)->comment('都道府県コード');
             $table->boolean('checked')->default(0);
+            $table->boolean('checked_children')->default(0);
         });
     }
 
