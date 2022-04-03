@@ -51,6 +51,8 @@ class WorkingConditionLocation03Shichoson extends Model
 
                 //都道府県データとのリレーション
                 $shichoson->rel_kus = WorkingConditionLocation04Ku::where('shichoson_id',$shichoson->id)->get();
+                $shichoson->kus = WorkingConditionLocation04Ku::where('shichoson_id',$shichoson->id)->get();
+
             }
             return $shichosons;
         }

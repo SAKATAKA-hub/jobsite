@@ -52,6 +52,8 @@ class WorkingConditionLocation01Redion extends Model
 
             //都道府県データとのリレーション
             $radion->rel_todohukens = WorkingConditionLocation02Todohuken::forApi($radion->id);
+            $radion->todohukens = WorkingConditionLocation02Todohuken::forApi($radion->id);
+
         }
         return $radions;
     }
@@ -64,6 +66,7 @@ class WorkingConditionLocation01Redion extends Model
 
             //都道府県データとのリレーション
             $radion->rel_todohukens = WorkingConditionLocation02Todohuken::forTrainApi($radion->id);
+
         }
         return $radions;
     }

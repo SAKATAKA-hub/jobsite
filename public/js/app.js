@@ -6412,6 +6412,231 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {//
+    };
+  },
+  mounted: function mounted() {//
+  },
+  methods: {//
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WorkConditionInputModal/Location.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WorkConditionInputModal/Location.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6421,9 +6646,347 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      //text
+      condition_name: '勤務地',
+      inputs_text: '選択されていません',
+      //meta data
+      csrf_token: document.querySelector('meta[name="csrf-token"]').content,
+      route: {
+        wc_location_api: document.querySelector('meta[name="wc_location_api"]').content
+      },
+      //保存データ(location, radions, todohukens, shichosons, kus,)
+      location: {
+        checked: false,
+        radions: []
+      },
+      //コピーデータ(確定前)
+      copy_location: [],
+      //フォーム送信で送るデータ
+      inputs: {
+        radions: [],
+        todohukens: [],
+        shichosons: [],
+        kus: []
+      }
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
-  }
+    var _this = this;
+
+    fetch(this.route.wc_location_api).then(function (response) {
+      if (!response.ok) {
+        throw new Error();
+      }
+
+      return response.json();
+    }).then(function (json) {
+      // JSONをdataにコピー
+      _this.location.radions = json.location_radions; //保存データ
+
+      _this.addObjectElement(); //保存データオブジェクト内に要素の追加(parent)
+
+
+      _this.copy_location = Object.assign({}, _this.location); //保存データのコピー
+      // console.log(this.copy_location.radions);
+    })["catch"](function (error) {
+      alert('データの読み込みに失敗しました。');
+    });
+  },
+  methods: {
+    /**
+     * 存データオブジェクト内に要素の追加(mounted時に利用)
+     *
+     * parent 親オブジェクト参照要素の追加
+    */
+    addObjectElement: function addObjectElement() {
+      // location, radions, todohukens, shichosons, kus,
+
+      /* radions */
+      var radions = this.location.radions;
+
+      for (var rad_i = 0; rad_i < radions.length; rad_i++) {
+        var radion = radions[rad_i]; // 親オブジェクト参照要素の追加
+
+        radion['parent'] = this.location;
+        /* todohukens */
+
+        var todohukens = radion.todohukens;
+
+        for (var tod_i = 0; tod_i < todohukens.length; tod_i++) {
+          var todohuken = todohukens[tod_i]; // 親オブジェクト参照要素の追加
+
+          todohuken['parent'] = radion;
+          /* shichosons */
+
+          var shichosons = todohuken.shichosons;
+
+          for (var shi_i = 0; shi_i < shichosons.length; shi_i++) {
+            var shichoson = shichosons[shi_i]; // 親オブジェクト参照要素の追加
+
+            shichoson['parent'] = todohuken;
+            /* kus */
+
+            var kus = shichoson.kus;
+
+            for (var ku_i = 0; ku_i < kus.length; ku_i++) {
+              var ku = kus[ku_i]; // 親オブジェクト参照要素の追加
+
+              ku['parent'] = shichoson;
+            }
+          }
+        }
+      }
+    },
+    //end addObjectElement
+
+    /**
+     * チェックボックスクリック時に実行されるメソッド
+     *
+     * @param Object object
+     * @param String ob_name
+    */
+    changeCheckBox: function changeCheckBox(object, ob_name) {
+      //保存データ(location, radions, todohukens, shichosons, kus,)
+
+      /* A-0(親->子供) radionの子供データのチェックを変更する関数 */
+      var changRadionChildrenChecked = function changRadionChildrenChecked(object) {
+        // 子供データグループ名
+        var children_name = 'todohukens'; // 子供データのチェックを変更
+
+        for (var index = 0; index < object[children_name].length; index++) {
+          var child = object[children_name][index];
+          child.checked = object.checked; // 子孫データのチェックを変更
+
+          changeTodohukenChildrenChecked(child);
+        } //チェックが入っている子供がいるかどうか
+
+
+        object.checked_children = object.checked;
+      };
+      /* A-1(親->子供) todohukenの子供データのチェックを変更する関数 */
+
+
+      var changeTodohukenChildrenChecked = function changeTodohukenChildrenChecked(object) {
+        // 子供データグループ名
+        var children_name = 'shichosons'; // 子供データのチェックを変更
+
+        for (var index = 0; index < object[children_name].length; index++) {
+          var child = object[children_name][index];
+          child.checked = object.checked; // 子孫データのチェックを変更
+
+          changeShichosonChildrenChecked(child);
+        } //チェックが入っている子供がいるかどうか
+
+
+        object.checked_children = object.checked;
+      };
+      /* A-2(親->子供) shichosonの子供データのチェックを変更する関数 */
+
+
+      var changeShichosonChildrenChecked = function changeShichosonChildrenChecked(object) {
+        // 子供データグループ名
+        var children_name = 'kus'; // 子供データのチェックを変更
+
+        for (var index = 0; index < object[children_name].length; index++) {
+          var child = object[children_name][index];
+          child.checked = object.checked; // 子孫データのチェックを変更(なし)
+        } //チェックが入っている子供がいるかどうか
+
+
+        object.checked_children = object.checked;
+      };
+      /* B-1(子->親) todohukenの親データのチェックを変更する関数 */
+
+
+      var changeTodohukenPalentChecked = function changeTodohukenPalentChecked(object) {
+        var parent = object.parent; //親データ
+
+        var children = parent['todohukens']; //兄弟データ
+
+        parent.checked = true; //親のチェック
+
+        parent.checked_children = false; //チェックが入っている子供がいるかどうか
+
+        for (var index = 0; index < children.length; index++) {
+          var child = children[index];
+          parent.checked = !child.checked ? false : parent.checked;
+          parent.checked_children = child.checked ? true : child.checked_children ? true : parent.checked_children;
+        } // 先祖データのチェックを変更
+
+      };
+      /* B-2(子->親) shichosonの親データのチェックを変更する関数 */
+
+
+      var changeShichosonPalentChecked = function changeShichosonPalentChecked(object) {
+        var parent = object.parent; //親データ
+
+        var children = parent['shichosons']; //兄弟データ
+
+        parent.checked = true; //親のチェック
+
+        parent.checked_children = false; //チェックが入っている子供がいるかどうか
+
+        for (var index = 0; index < children.length; index++) {
+          var child = children[index];
+          parent.checked = !child.checked ? false : parent.checked;
+          parent.checked_children = child.checked ? true : child.checked_children ? true : parent.checked_children;
+        } // 先祖データのチェックを変更
+
+
+        changeTodohukenPalentChecked(parent);
+      };
+      /* B-3(子->親) kuの親データのチェックを変更する関数 */
+
+
+      var changeKuPalentChecked = function changeKuPalentChecked(object) {
+        var parent = object.parent; //親データ
+
+        var children = parent['kus']; //兄弟データ
+
+        parent.checked = true; //親のチェック
+
+        parent.checked_children = false; //チェックが入っている子供がいるかどうか
+
+        for (var index = 0; index < children.length; index++) {
+          var child = children[index];
+          parent.checked = !child.checked ? false : parent.checked;
+          parent.checked_children = child.checked ? true : parent.checked_children;
+        } // 先祖データのチェックを変更
+
+
+        changeShichosonPalentChecked(parent);
+      };
+      /* 分岐処理 */
+
+
+      switch (ob_name) {
+        case 'radion':
+          changRadionChildrenChecked(object); //(親->子供)
+          //
+
+          break;
+        //
+
+        case 'todohuken':
+          changeTodohukenChildrenChecked(object); //(親->子供)
+
+          changeTodohukenPalentChecked(object); //(子->親)
+
+          break;
+        //
+
+        case 'shichoson':
+          changeShichosonChildrenChecked(object); //(親->子供)
+
+          changeShichosonPalentChecked(object); //(子->親)
+
+          break;
+        //
+
+        case 'ku':
+          //
+          changeKuPalentChecked(object); //(子->親)
+
+          break;
+        //
+
+        default:
+          break;
+        //
+      }
+    },
+    //end changeCheckBox
+
+    /**
+     * 入力を開始する
+     *
+    */
+    startInput: function startInput() {
+      this.copy_location = Object.assign({}, this.location); //保存データのコピー
+
+      if (this.location.radions.length) {
+        console.log(this.copy_location.radions[0].checked);
+        console.log(this.location.radions[0].checked);
+      }
+    },
+
+    /**
+     * 入力内容を確定する
+     *
+    */
+    confirmInput: function confirmInput() {
+      //コピーデータを保存データにコピー
+      this.location = Object.assign({}, this.copy_location); //保存データのコピー
+      // inputsのリセット
+
+      this.inputs = {
+        radions: [],
+        todohukens: [],
+        shichosons: [],
+        kus: []
+      };
+      /* radion */
+
+      var radions = this.location.radions;
+
+      for (var rad_i = 0; rad_i < radions.length; rad_i++) {
+        var radion = radions[rad_i]; // inputsに追加
+
+        if (radion.checked) {
+          this.inputs['radions'].push(radion.name);
+          continue;
+        }
+        /* todohuken */
+
+
+        var todohukens = radion.todohukens;
+
+        for (var tod_i = 0; tod_i < todohukens.length; tod_i++) {
+          var todohuken = todohukens[tod_i]; // inputsに追加
+
+          if (todohuken.checked) {
+            this.inputs['todohukens'].push(todohuken.name);
+            continue;
+          }
+          /* shichoson */
+
+
+          var shichosons = todohuken.shichosons;
+
+          for (var shi_i = 0; shi_i < shichosons.length; shi_i++) {
+            var shichoson = shichosons[shi_i]; // inputsに追加
+
+            if (shichoson.checked) {
+              this.inputs['shichosons'].push(shichoson.name);
+              continue;
+            }
+            /* ku */
+
+
+            var kus = shichoson.kus;
+
+            for (var ku_i = 0; ku_i < kus.length; ku_i++) {
+              var ku = kus[ku_i]; // inputsに追加
+
+              if (ku.checked) {
+                this.inputs['kus'].push(ku.name);
+                continue;
+              }
+            }
+          }
+        }
+      } // 選択内容表示用テキスト
+
+
+      var array = [].concat(_toConsumableArray(this.inputs.radions), _toConsumableArray(this.inputs.todohukens), _toConsumableArray(this.inputs.shichosons), _toConsumableArray(this.inputs.kus));
+      var text = array.join(' / ');
+      this.inputs_text = !text ? '選択されていません' : text;
+    } //end confirmInput
+
+  } //end methods
+
 });
 
 /***/ }),
@@ -6462,7 +7025,9 @@ Vue.component('cheakbox-occupation-component', (__webpack_require__(/*! ./compon
 
 Vue.component('cheakbox-train-component', (__webpack_require__(/*! ./components/ChakboxTrainComponent.vue */ "./resources/js/components/ChakboxTrainComponent.vue")["default"])); // その他条件チェックボックス
 
-Vue.component('cheakbox-other-component', (__webpack_require__(/*! ./components/ChakboxOtherComponent.vue */ "./resources/js/components/ChakboxOtherComponent.vue")["default"]));
+Vue.component('cheakbox-other-component', (__webpack_require__(/*! ./components/ChakboxOtherComponent.vue */ "./resources/js/components/ChakboxOtherComponent.vue")["default"])); // 勤務地入力画面　
+
+Vue.component('wcim-location-component', (__webpack_require__(/*! ./components/WorkConditionInputModal/Location.vue */ "./resources/js/components/WorkConditionInputModal/Location.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -29191,6 +29756,45 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/WorkConditionInputModal/Location.vue":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/WorkConditionInputModal/Location.vue ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Location_vue_vue_type_template_id_5e9eeee2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Location.vue?vue&type=template&id=5e9eeee2& */ "./resources/js/components/WorkConditionInputModal/Location.vue?vue&type=template&id=5e9eeee2&");
+/* harmony import */ var _Location_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Location.vue?vue&type=script&lang=js& */ "./resources/js/components/WorkConditionInputModal/Location.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Location_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Location_vue_vue_type_template_id_5e9eeee2___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Location_vue_vue_type_template_id_5e9eeee2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/WorkConditionInputModal/Location.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/ChakboxIndustryComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************!*\
   !*** ./resources/js/components/ChakboxIndustryComponent.vue?vue&type=script&lang=js& ***!
@@ -29284,6 +29888,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/WorkConditionInputModal/Location.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/WorkConditionInputModal/Location.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Location_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Location.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WorkConditionInputModal/Location.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Location_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -29385,6 +30005,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/WorkConditionInputModal/Location.vue?vue&type=template&id=5e9eeee2&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/WorkConditionInputModal/Location.vue?vue&type=template&id=5e9eeee2& ***!
+  \*****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Location_vue_vue_type_template_id_5e9eeee2___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Location_vue_vue_type_template_id_5e9eeee2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Location_vue_vue_type_template_id_5e9eeee2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Location.vue?vue&type=template&id=5e9eeee2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WorkConditionInputModal/Location.vue?vue&type=template&id=5e9eeee2&");
 
 
 /***/ }),
@@ -31771,25 +32408,824 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component"),
+    return _c("div", [_c("h1", [_vm._v("example conponent")])])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WorkConditionInputModal/Location.vue?vue&type=template&id=5e9eeee2&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/WorkConditionInputModal/Location.vue?vue&type=template&id=5e9eeee2& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass: "d-flex justify-content-between align-items-center",
+        staticStyle: { cursor: "pointer" },
+        attrs: {
+          "data-bs-toggle": "modal",
+          "data-bs-target": "#wcLocationModal",
+        },
+        on: {
+          click: function ($event) {
+            return _vm.startInput()
+          },
+        },
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "d-flex justify-content-between align-items-center" },
+          [
+            _c("h5", { staticClass: "m-0 me-3" }, [
+              _c("i", {
+                staticClass: "bi bi-geo-alt-fill text-secondary me-1",
+              }),
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.condition_name) +
+                  "\n            "
+              ),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
+            _c("div", { staticClass: "text-secondary" }, [
+              _vm._v(_vm._s(_vm.inputs_text)),
+            ]),
+          ]
+        ),
+        _vm._v(" "),
+        _c("i", { staticClass: "bi bi-chevron-right text-primary" }),
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "wcLocationModal",
+          tabindex: "-1",
+          "aria-labelledby": "wcLocationModalLabel",
+          "aria-hidden": "true",
+        },
+      },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _c(
+                "h5",
+                {
+                  staticClass: "modal-title",
+                  attrs: { id: "wcLocationModalLabel" },
+                },
+                [
+                  _c("i", {
+                    staticClass: "bi bi-geo-alt-fill text-secondary me-1",
+                  }),
+                  _vm._v(
+                    _vm._s(_vm.condition_name) + "を選択\n                    "
+                  ),
+                ]
+              ),
+              _vm._v(" "),
+              _c("button", {
+                staticClass: "btn-close",
+                attrs: {
+                  type: "button",
+                  "data-bs-dismiss": "modal",
+                  "aria-label": "Close",
+                },
+              }),
+            ]),
+            _vm._v(" "),
+            _c("div", {}, [
+              !_vm.location.radions.length
+                ? _c("div", { staticClass: "text-center text-secondary m-5" }, [
+                    _vm._v(
+                      "\n                        読み込み中・・・\n                    "
+                    ),
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "ul",
+                { staticClass: "list-group list-group-flush" },
+                _vm._l(_vm.copy_location.radions, function (radion) {
+                  return _c(
+                    "li",
+                    { key: radion.id, staticClass: "list-group-item p-0" },
+                    [
+                      _c("div", { staticClass: "p-2 ps-3 pe-3" }, [
+                        _c(
+                          "div",
+                          { staticClass: "d-flex justify-content-between" },
+                          [
+                            _c("h5", { staticClass: "m-0 ms-1" }, [
+                              _vm._v(_vm._s(radion.name)),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "text-primary fw-bold",
+                                attrs: {
+                                  type: "button",
+                                  "data-bs-toggle": "collapse",
+                                  "data-bs-target":
+                                    "#location_radion_itembox" + radion.id,
+                                  "aria-expanded": "false",
+                                  "aria-controls":
+                                    "location_radion_itembox" + radion.id,
+                                },
+                              },
+                              [_c("i", { staticClass: "bi bi-chevron-down" })]
+                            ),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "ul",
+                        {
+                          staticClass: "list-group list-group-flush  collapse",
+                          attrs: { id: "location_radion_itembox" + radion.id },
+                        },
+                        [
+                          _c(
+                            "li",
+                            { staticClass: "list-group-item p-0 ps-3" },
+                            [
+                              _c("div", { staticClass: "p-2 ps-0 pe-3" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: radion.checked,
+                                      expression: "radion.checked",
+                                    },
+                                  ],
+                                  staticClass: "form-check-input mb-3",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "location_radion_input" + radion.id,
+                                  },
+                                  domProps: {
+                                    checked: Array.isArray(radion.checked)
+                                      ? _vm._i(radion.checked, null) > -1
+                                      : radion.checked,
+                                  },
+                                  on: {
+                                    change: [
+                                      function ($event) {
+                                        var $$a = radion.checked,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = null,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              _vm.$set(
+                                                radion,
+                                                "checked",
+                                                $$a.concat([$$v])
+                                              )
+                                          } else {
+                                            $$i > -1 &&
+                                              _vm.$set(
+                                                radion,
+                                                "checked",
+                                                $$a
+                                                  .slice(0, $$i)
+                                                  .concat($$a.slice($$i + 1))
+                                              )
+                                          }
+                                        } else {
+                                          _vm.$set(radion, "checked", $$c)
+                                        }
+                                      },
+                                      function ($event) {
+                                        return _vm.changeCheckBox(
+                                          radion,
+                                          "radion"
+                                        )
+                                      },
+                                    ],
+                                  },
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "form-check-label",
+                                    attrs: {
+                                      for: "location_radion_input" + radion.id,
+                                    },
+                                  },
+                                  [
+                                    _c("div", { staticClass: "m-0 ms-1" }, [
+                                      _vm._v(_vm._s(radion.name) + "すべて"),
+                                    ]),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                radion.checked_children
+                                  ? _c(
+                                      "span",
+                                      { staticClass: "ms-1 badge bg-success" },
+                                      [
+                                        _vm._v(
+                                          "\n                                            選択中\n                                        "
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                              ]),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm._l(radion.todohukens, function (todohuken) {
+                            return _c(
+                              "li",
+                              {
+                                key: todohuken.id,
+                                staticClass: "list-group-item p-0 ps-3",
+                              },
+                              [
+                                _c("div", { staticClass: "p-2 ps-3 pe-3" }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "d-flex justify-content-between",
+                                    },
+                                    [
+                                      _c("div", [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: todohuken.checked,
+                                              expression: "todohuken.checked",
+                                            },
+                                          ],
+                                          staticClass: "form-check-input mb-3",
+                                          attrs: {
+                                            type: "checkbox",
+                                            id:
+                                              "location_todohuken_input" +
+                                              todohuken.id,
+                                          },
+                                          domProps: {
+                                            checked: Array.isArray(
+                                              todohuken.checked
+                                            )
+                                              ? _vm._i(
+                                                  todohuken.checked,
+                                                  null
+                                                ) > -1
+                                              : todohuken.checked,
+                                          },
+                                          on: {
+                                            change: [
+                                              function ($event) {
+                                                var $$a = todohuken.checked,
+                                                  $$el = $event.target,
+                                                  $$c = $$el.checked
+                                                    ? true
+                                                    : false
+                                                if (Array.isArray($$a)) {
+                                                  var $$v = null,
+                                                    $$i = _vm._i($$a, $$v)
+                                                  if ($$el.checked) {
+                                                    $$i < 0 &&
+                                                      _vm.$set(
+                                                        todohuken,
+                                                        "checked",
+                                                        $$a.concat([$$v])
+                                                      )
+                                                  } else {
+                                                    $$i > -1 &&
+                                                      _vm.$set(
+                                                        todohuken,
+                                                        "checked",
+                                                        $$a
+                                                          .slice(0, $$i)
+                                                          .concat(
+                                                            $$a.slice($$i + 1)
+                                                          )
+                                                      )
+                                                  }
+                                                } else {
+                                                  _vm.$set(
+                                                    todohuken,
+                                                    "checked",
+                                                    $$c
+                                                  )
+                                                }
+                                              },
+                                              function ($event) {
+                                                return _vm.changeCheckBox(
+                                                  todohuken,
+                                                  "todohuken"
+                                                )
+                                              },
+                                            ],
+                                          },
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "label",
+                                          {
+                                            staticClass: "form-check-label",
+                                            attrs: {
+                                              for:
+                                                "location_todohuken_input" +
+                                                todohuken.id,
+                                            },
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "m-0 ms-1" },
+                                              [_vm._v(_vm._s(todohuken.name))]
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        todohuken.checked_children
+                                          ? _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "ms-1 badge bg-success",
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                                    選択中\n                                                "
+                                                ),
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "text-primary fw-bold",
+                                          attrs: {
+                                            type: "button",
+                                            "data-bs-toggle": "collapse",
+                                            "data-bs-target":
+                                              "#location_todohuken_itembox" +
+                                              todohuken.id,
+                                            "aria-expanded": "false",
+                                            "aria-controls":
+                                              "location_todohuken_itembox" +
+                                              todohuken.id,
+                                          },
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "bi bi-chevron-down",
+                                          }),
+                                        ]
+                                      ),
+                                    ]
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "ul",
+                                  {
+                                    staticClass:
+                                      "list-group list-group-flush  collapse",
+                                    attrs: {
+                                      id:
+                                        "location_todohuken_itembox" +
+                                        todohuken.id,
+                                    },
+                                  },
+                                  _vm._l(
+                                    todohuken.shichosons,
+                                    function (shichoson) {
+                                      return _c(
+                                        "li",
+                                        {
+                                          key: shichoson.id,
+                                          staticClass:
+                                            "list-group-item p-0 ps-3 border-0",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "p-2 ps-3 pe-3" },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "d-flex justify-content-between",
+                                                },
+                                                [
+                                                  _c("div", [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            shichoson.checked,
+                                                          expression:
+                                                            "shichoson.checked",
+                                                        },
+                                                      ],
+                                                      staticClass:
+                                                        "form-check-input mb-3",
+                                                      attrs: {
+                                                        type: "checkbox",
+                                                        id:
+                                                          "location_shichoson_input" +
+                                                          shichoson.id,
+                                                      },
+                                                      domProps: {
+                                                        checked: Array.isArray(
+                                                          shichoson.checked
+                                                        )
+                                                          ? _vm._i(
+                                                              shichoson.checked,
+                                                              null
+                                                            ) > -1
+                                                          : shichoson.checked,
+                                                      },
+                                                      on: {
+                                                        change: [
+                                                          function ($event) {
+                                                            var $$a =
+                                                                shichoson.checked,
+                                                              $$el =
+                                                                $event.target,
+                                                              $$c = $$el.checked
+                                                                ? true
+                                                                : false
+                                                            if (
+                                                              Array.isArray($$a)
+                                                            ) {
+                                                              var $$v = null,
+                                                                $$i = _vm._i(
+                                                                  $$a,
+                                                                  $$v
+                                                                )
+                                                              if (
+                                                                $$el.checked
+                                                              ) {
+                                                                $$i < 0 &&
+                                                                  _vm.$set(
+                                                                    shichoson,
+                                                                    "checked",
+                                                                    $$a.concat([
+                                                                      $$v,
+                                                                    ])
+                                                                  )
+                                                              } else {
+                                                                $$i > -1 &&
+                                                                  _vm.$set(
+                                                                    shichoson,
+                                                                    "checked",
+                                                                    $$a
+                                                                      .slice(
+                                                                        0,
+                                                                        $$i
+                                                                      )
+                                                                      .concat(
+                                                                        $$a.slice(
+                                                                          $$i +
+                                                                            1
+                                                                        )
+                                                                      )
+                                                                  )
+                                                              }
+                                                            } else {
+                                                              _vm.$set(
+                                                                shichoson,
+                                                                "checked",
+                                                                $$c
+                                                              )
+                                                            }
+                                                          },
+                                                          function ($event) {
+                                                            return _vm.changeCheckBox(
+                                                              shichoson,
+                                                              "shichoson"
+                                                            )
+                                                          },
+                                                        ],
+                                                      },
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "label",
+                                                      {
+                                                        staticClass:
+                                                          "form-check-label",
+                                                        attrs: {
+                                                          for:
+                                                            "location_shichoson_input" +
+                                                            shichoson.id,
+                                                        },
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "m-0 ms-1",
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                shichoson.name
+                                                              )
+                                                            ),
+                                                          ]
+                                                        ),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    shichoson.checked_children &&
+                                                    shichoson.kus.length
+                                                      ? _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "ms-1 badge bg-success",
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                                            選択中\n                                                        "
+                                                            ),
+                                                          ]
+                                                        )
+                                                      : _vm._e(),
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  shichoson.kus.length
+                                                    ? _c(
+                                                        "a",
+                                                        {
+                                                          staticClass:
+                                                            "text-primary fw-bold",
+                                                          attrs: {
+                                                            type: "button",
+                                                            "data-bs-toggle":
+                                                              "collapse",
+                                                            "data-bs-target":
+                                                              "#location_shichoson_itembox" +
+                                                              shichoson.id,
+                                                            "aria-expanded":
+                                                              "false",
+                                                            "aria-controls":
+                                                              "location_shichoson_itembox" +
+                                                              shichoson.id,
+                                                          },
+                                                        },
+                                                        [
+                                                          _c("i", {
+                                                            staticClass:
+                                                              "bi bi-chevron-down",
+                                                          }),
+                                                        ]
+                                                      )
+                                                    : _vm._e(),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "p-2 ps-3 pe-3  collapse",
+                                              attrs: {
+                                                id:
+                                                  "location_shichoson_itembox" +
+                                                  shichoson.id,
+                                              },
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "d-flex flex-wrap",
+                                                },
+                                                _vm._l(
+                                                  shichoson.kus,
+                                                  function (ku) {
+                                                    return _c(
+                                                      "div",
+                                                      {
+                                                        key: ku.id,
+                                                        staticStyle: {
+                                                          width: "8rem",
+                                                        },
+                                                      },
+                                                      [
+                                                        _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value: ku.checked,
+                                                              expression:
+                                                                "ku.checked",
+                                                            },
+                                                          ],
+                                                          staticClass:
+                                                            "form-check-input",
+                                                          attrs: {
+                                                            type: "checkbox",
+                                                            id:
+                                                              "location_ku_input" +
+                                                              ku.id,
+                                                          },
+                                                          domProps: {
+                                                            checked:
+                                                              Array.isArray(
+                                                                ku.checked
+                                                              )
+                                                                ? _vm._i(
+                                                                    ku.checked,
+                                                                    null
+                                                                  ) > -1
+                                                                : ku.checked,
+                                                          },
+                                                          on: {
+                                                            change: [
+                                                              function (
+                                                                $event
+                                                              ) {
+                                                                var $$a =
+                                                                    ku.checked,
+                                                                  $$el =
+                                                                    $event.target,
+                                                                  $$c =
+                                                                    $$el.checked
+                                                                      ? true
+                                                                      : false
+                                                                if (
+                                                                  Array.isArray(
+                                                                    $$a
+                                                                  )
+                                                                ) {
+                                                                  var $$v =
+                                                                      null,
+                                                                    $$i =
+                                                                      _vm._i(
+                                                                        $$a,
+                                                                        $$v
+                                                                      )
+                                                                  if (
+                                                                    $$el.checked
+                                                                  ) {
+                                                                    $$i < 0 &&
+                                                                      _vm.$set(
+                                                                        ku,
+                                                                        "checked",
+                                                                        $$a.concat(
+                                                                          [$$v]
+                                                                        )
+                                                                      )
+                                                                  } else {
+                                                                    $$i > -1 &&
+                                                                      _vm.$set(
+                                                                        ku,
+                                                                        "checked",
+                                                                        $$a
+                                                                          .slice(
+                                                                            0,
+                                                                            $$i
+                                                                          )
+                                                                          .concat(
+                                                                            $$a.slice(
+                                                                              $$i +
+                                                                                1
+                                                                            )
+                                                                          )
+                                                                      )
+                                                                  }
+                                                                } else {
+                                                                  _vm.$set(
+                                                                    ku,
+                                                                    "checked",
+                                                                    $$c
+                                                                  )
+                                                                }
+                                                              },
+                                                              function (
+                                                                $event
+                                                              ) {
+                                                                return _vm.changeCheckBox(
+                                                                  ku,
+                                                                  "ku"
+                                                                )
+                                                              },
+                                                            ],
+                                                          },
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "label",
+                                                          {
+                                                            staticClass:
+                                                              "form-check-label",
+                                                            attrs: {
+                                                              for:
+                                                                "location_ku_input" +
+                                                                ku.id,
+                                                            },
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                                            " +
+                                                                _vm._s(
+                                                                  ku.name
+                                                                ) +
+                                                                "\n                                                        "
+                                                            ),
+                                                          ]
+                                                        ),
+                                                      ]
+                                                    )
+                                                  }
+                                                ),
+                                                0
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      )
+                                    }
+                                  ),
+                                  0
+                                ),
+                              ]
+                            )
+                          }),
+                        ],
+                        2
+                      ),
+                    ]
+                  )
+                }),
+                0
+              ),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-long",
+                  attrs: { "data-bs-dismiss": "modal", "aria-label": "Close" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.confirmInput()
+                    },
+                  },
+                },
+                [_vm._v("確定")]
               ),
             ]),
           ]),
         ]),
-      ]),
-    ])
-  },
-]
+      ]
+    ),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

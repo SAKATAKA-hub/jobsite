@@ -59,6 +59,8 @@ class WorkingConditionLocation02Todohuken extends Model
 
             //市町村データとのリレーション
             $todohuken->rel_shichosons = WorkingConditionLocation03Shichoson::ForApi($todohuken->id);
+            $todohuken->shichosons = WorkingConditionLocation03Shichoson::ForApi($todohuken->id);
+
         }
         return $todohukens;
     }

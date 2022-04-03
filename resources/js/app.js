@@ -38,6 +38,10 @@ Vue.component('cheakbox-train-component', require('./components/ChakboxTrainComp
 Vue.component('cheakbox-other-component', require('./components/ChakboxOtherComponent.vue').default);
 
 
+
+// 勤務地入力画面　
+Vue.component('wcim-location-component', require('./components/WorkConditionInputModal/Location.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

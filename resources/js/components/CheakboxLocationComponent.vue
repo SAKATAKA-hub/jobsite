@@ -159,6 +159,8 @@
             }
         },
         mounted() {
+
+
             fetch( this.route.wc_location_api)
             .then(response => {
                 if(!response.ok){ throw new Error(); }
@@ -174,8 +176,11 @@
                 alert('データの読み込みに失敗しました。');
             });
 
+
         },
         methods: {
+
+
             /**
              * 地域のチェックボックスをクリックした時
             */
