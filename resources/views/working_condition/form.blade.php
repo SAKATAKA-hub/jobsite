@@ -51,7 +51,7 @@
 
                         <h5 class="m-0">駅(路線)</h5>
 
-                        <button>入力</button>
+                        <i class="bi bi-chevron-right text-primary"></i>
                     </div>
                 </li>
 
@@ -62,7 +62,7 @@
 
                         <h5 class="m-0">職種</h5>
 
-                        <button>入力</button>
+                        <i class="bi bi-chevron-right text-primary"></i>
                     </div>
                 </li>
 
@@ -73,7 +73,7 @@
 
                         <h5 class="m-0">業種</h5>
 
-                        <button>入力</button>
+                        <i class="bi bi-chevron-right text-primary"></i>
                     </div>
                 </li>
 
@@ -84,7 +84,7 @@
 
                         <h5 class="m-0">その他条件</h5>
 
-                        <button>入力</button>
+                        <i class="bi bi-chevron-right text-primary"></i>
                     </div>
                 </li>
             </ul>

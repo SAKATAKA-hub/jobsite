@@ -12,7 +12,7 @@ use App\Http\Controllers\WorkingConditionController; // Controller(勤務条件)
  */
 Route::get('/', function () {
     // return view('welcome');
-    return redirect()->route('wc_list');
+    return redirect()->route('wc_form');
 });
 
 Auth::routes();
